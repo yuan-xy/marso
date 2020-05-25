@@ -3,13 +3,18 @@ marso - A Move(Libra) Parser
 ###################################################################
 
 
-.. image:: https://travis-ci.org/yuan-xy/marso.svg?branch=master
-    :target: https://travis-ci.org/yuan-xy/marso
-    :alt: Travis CI build status
+.. image:: https://img.shields.io/pypi/v/marso.svg
+    :target: https://pypi.org/project/marso/
+    :alt: Marso
 
-.. image:: https://coveralls.io/repos/github/yuan-xy/marso/badge.svg?branch=master
-    :target: https://coveralls.io/github/yuan-xy/marso?branch=master
-    :alt: Coverage Status
+.. image:: https://img.shields.io/badge/license-MIT-blue.svg
+    :target: ./LICENSE
+    :alt: MIT licensed
+
+.. image:: https://github.com/yuan-xy/marso/workflows/Python%20package/badge.svg
+    :target: https://github.com/yuan-xy/marso/actions
+    :alt: Python package
+
 
 
 Marso is a Move language parser that supports error recovery and round-trip parsing
@@ -68,10 +73,9 @@ Installation
 Acknowledgements
 ================
 
+- David Halter (@davidhalter) for the original `Parso <https://github.com/davidhalter/parso>`_ project.
 - Guido van Rossum (@gvanrossum) for creating the parser generator pgen2
   (originally used in lib2to3).
-- `Salome Schneider <https://www.crepes-schnaegg.ch/cr%C3%AApes-schn%C3%A4gg/kunst-f%C3%BCrs-cr%C3%AApes-mobil/>`_
-  for the extremely awesome marso logo.
 
 
 .. _jedi: https://github.com/yuan-xy/jedi
