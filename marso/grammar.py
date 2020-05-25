@@ -145,6 +145,7 @@ class Grammar(object):
             error_recovery=error_recovery,
             start_nonterminal=start_symbol
         )
+        # breakpoint()
         root_node = p.parse(tokens=tokens)
 
         if cache or diff_cache:
