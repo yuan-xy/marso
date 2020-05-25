@@ -1,5 +1,5 @@
 ###################################################################
-marso - A Python Parser
+marso - A Move(Libra) Parser
 ###################################################################
 
 
@@ -13,14 +13,14 @@ marso - A Python Parser
 
 .. image:: https://raw.githubusercontent.com/davidhalter/marso/master/docs/_static/logo_characters.png
 
-Parso is a Python parser that supports error recovery and round-trip parsing
-for different Python versions (in multiple Python versions). Parso is also able
+Marso is a Move Lang parser that supports error recovery and round-trip parsing
+for different Python versions (in multiple Python versions). Marso is also able
 to list multiple syntax errors in your python file.
 
-Parso has been battle-tested by jedi_. It was pulled out of jedi to be useful
+Marso has been battle-tested by jedi_. It was pulled out of jedi to be useful
 for other projects as well.
 
-Parso consists of a small API to parse Python and analyse the syntax tree.
+Marso consists of a small API to parse Python and analyse the syntax tree.
 
 A simple example:
 

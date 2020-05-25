@@ -158,10 +158,10 @@ def _get_last_line(node_or_leaf):
         n = last_leaf.get_next_leaf()
         if n.type == 'endmarker' and '\n' in n.prefix:
             # This is a very special case and has to do with error recovery in
-            # Parso. The problem is basically that there's no newline leaf at
+            # Marso. The problem is basically that there's no newline leaf at
             # the end sometimes (it's required in the grammar, but not needed
             # actually before endmarker, CPython just adds a newline to make
-            # source code pass the parser, to account for that Parso error
+            # source code pass the parser, to account for that Marso error
             # recovery allows small_stmt instead of simple_stmt).
             return last_leaf.end_pos[0] + 1
         return last_leaf.end_pos[0]
@@ -792,7 +792,7 @@ class _NodesTree(object):
                         new_nodes.pop()
                     continue
                 if len(new_nodes) > 1 and new_nodes[-2].type == 'error_node':
-                    # The problem here is that Parso error recovery sometimes
+                    # The problem here is that Marso error recovery sometimes
                     # influences nodes before this node.
                     # Since the new last node is an error node this will get
                     # cleaned up in the next while iteration.

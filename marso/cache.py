@@ -64,9 +64,9 @@ http://docs.python.org/3/library/sys.html#sys.implementation
 def _get_default_cache_path():
     if platform.system().lower() == 'windows':
         dir_ = os.path.join(os.getenv('LOCALAPPDATA')
-                            or os.path.expanduser('~'), 'Parso', 'Parso')
+                            or os.path.expanduser('~'), 'Marso', 'Marso')
     elif platform.system().lower() == 'darwin':
-        dir_ = os.path.join('~', 'Library', 'Caches', 'Parso')
+        dir_ = os.path.join('~', 'Library', 'Caches', 'Marso')
     else:
         dir_ = os.path.join(os.getenv('XDG_CACHE_HOME') or '~/.cache', 'marso')
     return os.path.expanduser(dir_)
@@ -77,7 +77,7 @@ _default_cache_path = _get_default_cache_path()
 The path where the cache is stored.
 
 On Linux, this defaults to ``~/.cache/marso/``, on OS X to
-``~/Library/Caches/Parso/`` and on Windows to ``%LOCALAPPDATA%\\Parso\\Parso\\``.
+``~/Library/Caches/Marso/`` and on Windows to ``%LOCALAPPDATA%\\Marso\\Marso\\``.
 On Linux, if environment variable ``$XDG_CACHE_HOME`` is set,
 ``$XDG_CACHE_HOME/marso`` is used instead of the default one.
 """
