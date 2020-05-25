@@ -1,26 +1,26 @@
 import hashlib
 import os
 
-from parso._compatibility import FileNotFoundError, is_pypy
-from parso.pgen2 import generate_grammar
-from parso.utils import split_lines, python_bytes_to_unicode, parse_version_string
-from parso.python.diff import DiffParser
-from parso.python.tokenize import tokenize_lines, tokenize
-from parso.python.token import PythonTokenTypes
-from parso.cache import parser_cache, load_module, save_module
-from parso.parser import BaseParser
-from parso.python.parser import Parser as PythonParser
-from parso.python.errors import ErrorFinderConfig
-from parso.python import pep8
-from parso.file_io import FileIO, KnownContentFileIO
-from parso.normalizer import RefactoringNormalizer
+from marso._compatibility import FileNotFoundError, is_pypy
+from marso.pgen2 import generate_grammar
+from marso.utils import split_lines, python_bytes_to_unicode, parse_version_string
+from marso.python.diff import DiffParser
+from marso.python.tokenize import tokenize_lines, tokenize
+from marso.python.token import PythonTokenTypes
+from marso.cache import parser_cache, load_module, save_module
+from marso.parser import BaseParser
+from marso.python.parser import Parser as PythonParser
+from marso.python.errors import ErrorFinderConfig
+from marso.python import pep8
+from marso.file_io import FileIO, KnownContentFileIO
+from marso.normalizer import RefactoringNormalizer
 
 _loaded_grammars = {}
 
 
 class Grammar(object):
     """
-    :py:func:`parso.load_grammar` returns instances of this class.
+    :py:func:`marso.load_grammar` returns instances of this class.
 
     Creating custom none-python grammars by calling this is not supported, yet.
     """
@@ -59,7 +59,7 @@ class Grammar(object):
         :param bool cache: Keeps a copy of the parser tree in RAM and on disk
             if a path is given. Returns the cached trees if the corresponding
             files on disk have not changed. Note that this stores pickle files
-            on your file system (e.g. for Linux in ``~/.cache/parso/``).
+            on your file system (e.g. for Linux in ``~/.cache/marso/``).
         :param bool diff_cache: Diffs the cached python module against the new
             code and tries to parse only the parts that have changed. Returns
             the same (changed) module that is found in cache. Using this option
@@ -67,12 +67,12 @@ class Grammar(object):
             under that path, because the contents of it might change. This
             option is still somewhat experimental. If you want stability,
             please don't use it.
-        :param bool cache_path: If given saves the parso cache in this
+        :param bool cache_path: If given saves the marso cache in this
             directory. If not given, defaults to the default cache places on
             each platform.
 
-        :return: A subclass of :py:class:`parso.tree.NodeOrLeaf`. Typically a
-            :py:class:`parso.python.tree.Module`.
+        :return: A subclass of :py:class:`marso.tree.NodeOrLeaf`. Typically a
+            :py:class:`marso.python.tree.Module`.
         """
         if 'start_pos' in kwargs:
             raise TypeError("parse() got an unexpected keyword argument.")
@@ -162,8 +162,8 @@ class Grammar(object):
 
     def iter_errors(self, node):
         """
-        Given a :py:class:`parso.tree.NodeOrLeaf` returns a generator of
-        :py:class:`parso.normalizer.Issue` objects. For Python this is
+        Given a :py:class:`marso.tree.NodeOrLeaf` returns a generator of
+        :py:class:`marso.normalizer.Issue` objects. For Python this is
         a list of syntax/indentation errors.
         """
         if self._error_normalizer_config is None:
@@ -225,7 +225,7 @@ class PythonGrammar(Grammar):
 
 def load_grammar(**kwargs):
     """
-    Loads a :py:class:`parso.Grammar`. The default version is the current Python
+    Loads a :py:class:`marso.Grammar`. The default version is the current Python
     version.
 
     :param str version: A python version string, e.g. ``version='3.8'``.

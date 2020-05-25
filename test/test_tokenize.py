@@ -5,11 +5,11 @@ from textwrap import dedent
 
 import pytest
 
-from parso.utils import split_lines, parse_version_string
-from parso.python.token import PythonTokenTypes
-from parso.python import tokenize
-from parso import parse
-from parso.python.tokenize import PythonToken
+from marso.utils import split_lines, parse_version_string
+from marso.python.token import PythonTokenTypes
+from marso.python import tokenize
+from marso import parse
+from marso.python.tokenize import PythonToken
 
 
 # To make it easier to access some of the token types, just put them here.
@@ -291,9 +291,9 @@ def test_indent_error_recovery():
     expected = [
         # `str(`
         INDENT, NAME, OP,
-        # `from parso`
+        # `from marso`
         NAME, NAME,
-        # `import a` on same line as the previous from parso
+        # `import a` on same line as the previous from marso
         NAME, NAME, NEWLINE,
         # Dedent happens, because there's an import now and the import
         # statement "breaks" out of the opening paren on the first line.

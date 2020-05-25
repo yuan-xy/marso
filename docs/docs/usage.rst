@@ -3,19 +3,19 @@
 Usage
 =====
 
-|parso| works around grammars. You can simply create Python grammars by calling
-:py:func:`parso.load_grammar`. Grammars (with a custom tokenizer and custom parser trees)
-can also be created by directly instantiating :py:func:`parso.Grammar`. More information
+|marso| works around grammars. You can simply create Python grammars by calling
+:py:func:`marso.load_grammar`. Grammars (with a custom tokenizer and custom parser trees)
+can also be created by directly instantiating :py:func:`marso.Grammar`. More information
 about the resulting objects can be found in the :ref:`parser tree documentation
 <parser-tree>`.
 
-The simplest way of using parso is without even loading a grammar
-(:py:func:`parso.parse`):
+The simplest way of using marso is without even loading a grammar
+(:py:func:`marso.parse`):
 
 .. sourcecode:: python
 
-   >>> import parso
-   >>> parso.parse('foo + bar')
+   >>> import marso
+   >>> marso.parse('foo + bar')
    <Module: @1-1>
 
 Loading a Grammar
@@ -23,7 +23,7 @@ Loading a Grammar
 
 Typically if you want to work with one specific Python version, use:
 
-.. autofunction:: parso.load_grammar
+.. autofunction:: marso.load_grammar
 
 Grammar methods
 ---------------
@@ -31,7 +31,7 @@ Grammar methods
 You will get back a grammar object that you can use to parse code and find
 issues in it:
 
-.. autoclass:: parso.Grammar
+.. autoclass:: marso.Grammar
     :members:
     :undoc-members:
 
@@ -39,10 +39,10 @@ issues in it:
 Error Retrieval
 ---------------
 
-|parso| is able to find multiple errors in your source code. Iterating through
+|marso| is able to find multiple errors in your source code. Iterating through
 those errors yields the following instances:
 
-.. autoclass:: parso.normalizer.Issue
+.. autoclass:: marso.normalizer.Issue
     :members:
     :undoc-members:
 
@@ -50,11 +50,11 @@ those errors yields the following instances:
 Utility
 -------
 
-|parso| also offers some utility functions that can be really useful:
+|marso| also offers some utility functions that can be really useful:
 
-.. autofunction:: parso.parse
-.. autofunction:: parso.split_lines
-.. autofunction:: parso.python_bytes_to_unicode
+.. autofunction:: marso.parse
+.. autofunction:: marso.split_lines
+.. autofunction:: marso.python_bytes_to_unicode
 
 
 Used By

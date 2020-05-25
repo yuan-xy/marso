@@ -5,9 +5,9 @@
 # Copyright David Halter and Contributors
 # Modifications are dual-licensed: MIT and PSF.
 
-from parso.python.tokenize import tokenize
-from parso.utils import parse_version_string
-from parso.python.token import PythonTokenTypes
+from marso.python.tokenize import tokenize
+from marso.utils import parse_version_string
+from marso.python.token import PythonTokenTypes
 
 
 class GrammarParser():

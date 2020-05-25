@@ -10,10 +10,10 @@ from textwrap import dedent
 
 import pytest
 
-from parso import load_grammar
-from parso import ParserSyntaxError
-from parso.pgen2 import generate_grammar
-from parso.python import tokenize
+from marso import load_grammar
+from marso import ParserSyntaxError
+from marso.pgen2 import generate_grammar
+from marso.python import tokenize
 
 
 def _parse(code, version=None):

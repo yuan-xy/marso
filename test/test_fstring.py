@@ -1,8 +1,8 @@
 import pytest
 from textwrap import dedent
 
-from parso import load_grammar, ParserSyntaxError
-from parso.python.tokenize import tokenize
+from marso import load_grammar, ParserSyntaxError
+from marso.python.tokenize import tokenize
 
 
 @pytest.fixture

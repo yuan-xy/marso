@@ -9,7 +9,7 @@
 """
 The ``Parser`` tries to convert the available Python code in an easy to read
 format, something like an abstract syntax tree. The classes who represent this
-tree, are sitting in the :mod:`parso.tree` module.
+tree, are sitting in the :mod:`marso.tree` module.
 
 The Python module ``tokenize`` is a very important part in the ``Parser``,
 because it splits the code into different words (tokens).  Sometimes it looks a
@@ -23,8 +23,8 @@ within the statement. This lowers memory usage and cpu time and reduces the
 complexity of the ``Parser`` (there's another parser sitting inside
 ``Statement``, which produces ``Array`` and ``Call``).
 """
-from parso import tree
-from parso.pgen2.generator import ReservedString
+from marso import tree
+from marso.pgen2.generator import ReservedString
 
 
 class ParserSyntaxError(Exception):

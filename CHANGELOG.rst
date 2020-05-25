@@ -21,7 +21,7 @@ Changelog
 0.6.1 (2020-02-03)
 ++++++++++++++++++
 
-- Add ``parso.normalizer.Issue.end_pos`` to make it possible to know where an
+- Add ``marso.normalizer.Issue.end_pos`` to make it possible to know where an
   issue ends
 
 0.6.0 (2020-01-26)
@@ -50,7 +50,7 @@ Changelog
 
 - **Breaking Change** comp_for is now called sync_comp_for for all Python
   versions to be compatible with the Python 3.8 Grammar
-- Added .pyi stubs for a lot of the parso API
+- Added .pyi stubs for a lot of the marso API
 - Small FileIO changes
 
 0.4.0 (2019-04-05)

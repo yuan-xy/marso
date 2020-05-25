@@ -8,8 +8,8 @@ However the tests might still be relevant for the parser.
 
 from textwrap import dedent
 
-from parso._compatibility import u
-from parso import parse
+from marso._compatibility import u
+from marso import parse
 
 
 def test_carriage_return_splitting():

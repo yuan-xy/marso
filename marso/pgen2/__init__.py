@@ -7,4 +7,4 @@
 # Copyright 2014 David Halter and Contributors
 # Modifications are dual-licensed: MIT and PSF.
 
-from parso.pgen2.generator import generate_grammar
+from marso.pgen2.generator import generate_grammar

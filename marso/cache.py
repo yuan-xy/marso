@@ -13,7 +13,7 @@ try:
 except:
     import pickle
 
-from parso._compatibility import FileNotFoundError
+from marso._compatibility import FileNotFoundError
 
 LOG = logging.getLogger(__name__)
 
@@ -68,7 +68,7 @@ def _get_default_cache_path():
     elif platform.system().lower() == 'darwin':
         dir_ = os.path.join('~', 'Library', 'Caches', 'Parso')
     else:
-        dir_ = os.path.join(os.getenv('XDG_CACHE_HOME') or '~/.cache', 'parso')
+        dir_ = os.path.join(os.getenv('XDG_CACHE_HOME') or '~/.cache', 'marso')
     return os.path.expanduser(dir_)
 
 
@@ -76,10 +76,10 @@ _default_cache_path = _get_default_cache_path()
 """
 The path where the cache is stored.
 
-On Linux, this defaults to ``~/.cache/parso/``, on OS X to
+On Linux, this defaults to ``~/.cache/marso/``, on OS X to
 ``~/Library/Caches/Parso/`` and on Windows to ``%LOCALAPPDATA%\\Parso\\Parso\\``.
 On Linux, if environment variable ``$XDG_CACHE_HOME`` is set,
-``$XDG_CACHE_HOME/parso`` is used instead of the default one.
+``$XDG_CACHE_HOME/marso`` is used instead of the default one.
 """
 
 parser_cache = {}

@@ -12,8 +12,8 @@ Parso consists of a small API to parse Python and analyse the syntax tree.
 
 A simple example:
 
->>> import parso
->>> module = parso.parse('hello + 1', version="3.6")
+>>> import marso
+>>> module = marso.parse('hello + 1', version="3.6")
 >>> expr = module.children[0]
 >>> expr
 PythonNode(arith_expr, [<Name: hello@1,0>, <Operator: +>, <Number: 1>])
@@ -29,7 +29,7 @@ hello + 1
 
 To list multiple issues:
 
->>> grammar = parso.load_grammar()
+>>> grammar = marso.load_grammar()
 >>> module = grammar.parse('foo +\nbar\ncontinue')
 >>> error1, error2 = grammar.iter_errors(module)
 >>> error1.message
@@ -38,9 +38,9 @@ To list multiple issues:
 "SyntaxError: 'continue' not properly in loop"
 """
 
-from parso.parser import ParserSyntaxError
-from parso.grammar import Grammar, load_grammar
-from parso.utils import split_lines, python_bytes_to_unicode
+from marso.parser import ParserSyntaxError
+from marso.grammar import Grammar, load_grammar
+from marso.utils import split_lines, python_bytes_to_unicode
 
 
 __version__ = '0.7.0'
@@ -49,9 +49,9 @@ __version__ = '0.7.0'
 def parse(code=None, **kwargs):
     """
     A utility function to avoid loading grammars.
-    Params are documented in :py:meth:`parso.Grammar.parse`.
+    Params are documented in :py:meth:`marso.Grammar.parse`.
 
-    :param str version: The version used by :py:func:`parso.load_grammar`.
+    :param str version: The version used by :py:func:`marso.load_grammar`.
     """
     version = kwargs.pop('version', None)
     grammar = load_grammar(version=version)

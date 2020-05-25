@@ -7,9 +7,9 @@ import os
 
 import pytest
 
-import parso
-from parso import cache
-from parso.utils import parse_version_string
+import marso
+from marso import cache
+from marso.utils import parse_version_string
 
 collect_ignore = ["setup.py"]
 
@@ -18,7 +18,7 @@ VERSIONS_3 = '3.4', '3.5', '3.6', '3.7', '3.8'
 
 
 @pytest.fixture(scope='session')
-def clean_parso_cache():
+def clean_marso_cache():
     """
     Set the default cache directory to a temporary directory during tests.
 
@@ -29,7 +29,7 @@ def clean_parso_cache():
     This fixture is activated in ../pytest.ini.
     """
     old = cache._default_cache_path
-    tmp = tempfile.mkdtemp(prefix='parso-test-')
+    tmp = tempfile.mkdtemp(prefix='marso-test-')
     cache._default_cache_path = tmp
     yield
     cache._default_cache_path = old
@@ -99,17 +99,17 @@ class Checker():
     def __init__(self, version, is_passing):
         self.version = version
         self._is_passing = is_passing
-        self.grammar = parso.load_grammar(version=self.version)
+        self.grammar = marso.load_grammar(version=self.version)
 
     def parse(self, code):
         if self._is_passing:
-            return parso.parse(code, version=self.version, error_recovery=False)
+            return marso.parse(code, version=self.version, error_recovery=False)
         else:
             self._invalid_syntax(code)
 
     def _invalid_syntax(self, code):
-        with pytest.raises(parso.ParserSyntaxError):
-            module = parso.parse(code, version=self.version, error_recovery=False)
+        with pytest.raises(marso.ParserSyntaxError):
+            module = marso.parse(code, version=self.version, error_recovery=False)
             # For debugging
             print(module.children)
 

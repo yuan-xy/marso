@@ -28,7 +28,7 @@ because we made some optimizations.
 
 from ast import literal_eval
 
-from parso.pgen2.grammar_parser import GrammarParser, NFAState
+from marso.pgen2.grammar_parser import GrammarParser, NFAState
 
 
 class Grammar(object):

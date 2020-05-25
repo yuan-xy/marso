@@ -17,8 +17,8 @@ from collections import namedtuple
 import itertools as _itertools
 from codecs import BOM_UTF8
 
-from parso.python.token import PythonTokenTypes
-from parso.utils import split_lines
+from marso.python.token import PythonTokenTypes
+from marso.utils import split_lines
 
 
 # Maximum code point of Unicode 6.0: 0x10ffff (1,114,111)
@@ -713,7 +713,7 @@ if __name__ == "__main__":
     else:
         code = sys.stdin.read()
 
-    from parso.utils import python_bytes_to_unicode, parse_version_string
+    from marso.utils import python_bytes_to_unicode, parse_version_string
 
     if isinstance(code, bytes):
         code = python_bytes_to_unicode(code)

@@ -4,8 +4,8 @@ import warnings
 import re
 from contextlib import contextmanager
 
-from parso.normalizer import Normalizer, NormalizerConfig, Issue, Rule
-from parso.python.tree import search_ancestor
+from marso.normalizer import Normalizer, NormalizerConfig, Issue, Rule
+from marso.python.tree import search_ancestor
 
 _BLOCK_STMTS = ('if_stmt', 'while_stmt', 'for_stmt', 'try_stmt', 'with_stmt')
 _STAR_EXPR_PARENTS = ('testlist_star_expr', 'testlist_comp', 'exprlist')

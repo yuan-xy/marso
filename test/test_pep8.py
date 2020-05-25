@@ -1,9 +1,9 @@
-import parso
+import marso
 
 
 def issues(code):
-    grammar = parso.load_grammar()
-    module = parso.parse(code)
+    grammar = marso.load_grammar()
+    module = marso.parse(code)
     return grammar._get_normalizer_issues(module)
 
 

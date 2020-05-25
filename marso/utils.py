@@ -4,7 +4,7 @@ import sys
 from ast import literal_eval
 from functools import total_ordering
 
-from parso._compatibility import unicode
+from marso._compatibility import unicode
 
 # The following is a list in Python that are line breaks in str.splitlines, but
 # not in Python. In Python only \r (Carriage Return, 0xD) and \n (Line Feed,
@@ -120,10 +120,10 @@ def python_bytes_to_unicode(source, encoding='utf-8', errors='strict'):
 
 def version_info():
     """
-    Returns a namedtuple of parso's version, similar to Python's
+    Returns a namedtuple of marso's version, similar to Python's
     ``sys.version_info``.
     """
-    from parso import __version__
+    from marso import __version__
     tupl = re.findall(r'[a-z]+|\d+', __version__)
     return Version(*[x if i == 3 else int(x) for i, x in enumerate(tupl)])
 

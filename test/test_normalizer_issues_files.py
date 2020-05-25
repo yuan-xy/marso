@@ -7,8 +7,8 @@ import difflib
 import re
 from functools import total_ordering
 
-import parso
-from parso.utils import python_bytes_to_unicode
+import marso
+from marso.utils import python_bytes_to_unicode
 
 
 @total_ordering
@@ -58,7 +58,7 @@ def test_normalizer_issue(normalizer_issue_case):
 
     desired = sort(collect_errors(code))
 
-    grammar = parso.load_grammar(version=normalizer_issue_case.python_version)
+    grammar = marso.load_grammar(version=normalizer_issue_case.python_version)
     module = grammar.parse(code)
     issues = grammar._get_normalizer_issues(module)
     actual = sort(issues)

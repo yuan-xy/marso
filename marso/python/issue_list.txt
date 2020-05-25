@@ -129,7 +129,7 @@ A list of syntax/indentation errors I've encountered in CPython.
     "from __future__ imports must occur at the beginning of the file"  # Also in compile.c
 
 # Parser/tokenizer.c
-    # All the following issues seem to be irrelevant for parso, because the
+    # All the following issues seem to be irrelevant for marso, because the
     # encoding stuff is done before it reaches the tokenizer. It's already
     # unicode at that point.
     "encoding problem: %s"
@@ -163,7 +163,7 @@ A list of syntax/indentation errors I've encountered in CPython.
               "unexpected unindent"
 
 
-    # Irrelevant for parso for now.
+    # Irrelevant for marso for now.
     E_OVERFLOW: "expression too long"
     E_DECODE: "unknown decode error"
     E_BADSINGLE: "multiple statements found while compiling a single statement"

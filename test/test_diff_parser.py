@@ -5,11 +5,11 @@ import sys
 
 import pytest
 
-from parso.utils import split_lines
-from parso import cache
-from parso import load_grammar
-from parso.python.diff import DiffParser, _assert_valid_graph, _assert_nodes_are_equal
-from parso import parse
+from marso.utils import split_lines
+from marso import cache
+from marso import load_grammar
+from marso.python.diff import DiffParser, _assert_valid_graph, _assert_nodes_are_equal
+from marso import parse
 
 ANY = object()
 
@@ -750,8 +750,8 @@ def test_paren_before_docstring(differ):
         """
         The
         """
-        from parso import tree
-        from parso import python
+        from marso import tree
+        from marso import python
         ''')
 
     code2 = insert_line_into_code(code1, 1, ' ' * 16 + 'raise InternalParseError(\n')

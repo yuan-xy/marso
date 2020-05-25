@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 
-from parso._compatibility import use_metaclass
+from marso._compatibility import use_metaclass
 
 
 class _NormalizerMeta(type):
@@ -133,7 +133,7 @@ class Issue(object):
         self.start_pos = node.start_pos
         """
         The start position position of the error as a tuple (line, column). As
-        always in |parso| the first line is 1 and the first column 0.
+        always in |marso| the first line is 1 and the first column 0.
         """
         self.end_pos = node.end_pos
 

@@ -1,6 +1,6 @@
 import pytest
-from parso.grammar import load_grammar
-from parso import utils
+from marso.grammar import load_grammar
+from marso import utils
 
 
 def test_load_inexisting_grammar():

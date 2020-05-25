@@ -3,7 +3,7 @@
 Development
 ===========
 
-If you want to contribute anything to |parso|, just open an issue or pull
+If you want to contribute anything to |marso|, just open an issue or pull
 request to discuss it. We welcome changes! Please check the ``CONTRIBUTING.md``
 file in the repository, first.
 
@@ -35,4 +35,4 @@ easy as::
     tox -e py27
 
 Tests are also run automatically on `Travis CI
-<https://travis-ci.org/davidhalter/parso/>`_.
+<https://travis-ci.org/davidhalter/marso/>`_.

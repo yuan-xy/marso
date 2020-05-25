@@ -1,8 +1,8 @@
 import sys
 from abc import abstractmethod, abstractproperty
 
-from parso._compatibility import utf8_repr, encoding
-from parso.utils import split_lines
+from marso._compatibility import utf8_repr, encoding
+from marso.utils import split_lines
 
 
 def search_ancestor(node, *node_types):
@@ -296,12 +296,12 @@ class BaseNode(NodeOrLeaf):
 
     def get_leaf_for_position(self, position, include_prefixes=False):
         """
-        Get the :py:class:`parso.tree.Leaf` at ``position``
+        Get the :py:class:`marso.tree.Leaf` at ``position``
 
         :param tuple position: A position tuple, row, column. Rows start from 1
         :param bool include_prefixes: If ``False``, ``None`` will be returned if ``position`` falls
             on whitespace or comments before a leaf
-        :return: :py:class:`parso.tree.Leaf` at ``position``, or ``None``
+        :return: :py:class:`marso.tree.Leaf` at ``position``, or ``None``
         """
         def binary_search(lower, upper):
             if lower == upper:

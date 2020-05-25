@@ -5,28 +5,28 @@
 Parser Tree
 ===========
 
-The parser tree is returned by calling :py:meth:`parso.Grammar.parse`.
+The parser tree is returned by calling :py:meth:`marso.Grammar.parse`.
 
-.. note:: Note that parso positions are always 1 based for lines and zero
+.. note:: Note that marso positions are always 1 based for lines and zero
    based for columns. This means the first position in a file is (1, 0).
 
 Parser Tree Base Classes
 ------------------------
 
 Generally there are two types of classes you will deal with:
-:py:class:`parso.tree.Leaf` and :py:class:`parso.tree.BaseNode`.
+:py:class:`marso.tree.Leaf` and :py:class:`marso.tree.BaseNode`.
 
-.. autoclass:: parso.tree.BaseNode
+.. autoclass:: marso.tree.BaseNode
     :show-inheritance:
     :members:
 
-.. autoclass:: parso.tree.Leaf
+.. autoclass:: marso.tree.Leaf
     :show-inheritance:
     :members:
 
 All nodes and leaves have these methods/properties:
 
-.. autoclass:: parso.tree.NodeOrLeaf
+.. autoclass:: marso.tree.NodeOrLeaf
     :members:
     :undoc-members:
     :show-inheritance:
@@ -35,9 +35,9 @@ All nodes and leaves have these methods/properties:
 Python Parser Tree
 ------------------
 
-.. currentmodule:: parso.python.tree
+.. currentmodule:: marso.python.tree
 
-.. automodule:: parso.python.tree
+.. automodule:: marso.python.tree
     :members:
     :undoc-members:
     :show-inheritance:
@@ -46,4 +46,4 @@ Python Parser Tree
 Utility
 -------
 
-.. autofunction:: parso.tree.search_ancestor
+.. autofunction:: marso.tree.search_ancestor

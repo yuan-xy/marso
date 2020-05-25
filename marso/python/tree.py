@@ -10,11 +10,11 @@ bit different).
 There's a lot of logic here that makes it easier for Jedi (and other libraries)
 to deal with a Python syntax tree.
 
-By using :py:meth:`parso.tree.NodeOrLeaf.get_code` on a module, you can get
+By using :py:meth:`marso.tree.NodeOrLeaf.get_code` on a module, you can get
 back the 1-to-1 representation of the input given to the parser. This is
 important if you want to refactor a parser tree.
 
->>> from parso import parse
+>>> from marso import parse
 >>> parser = parse('import os')
 >>> module = parser.get_root_node()
 >>> module
@@ -32,7 +32,7 @@ Changes to the Python Grammar
 A few things have changed when looking at Python grammar files:
 
 - :class:`Param` does not exist in Python grammar files. It is essentially a
-  part of a ``parameters`` node.  |parso| splits it up to make it easier to
+  part of a ``parameters`` node.  |marso| splits it up to make it easier to
   analyse parameters. However this just makes it easier to deal with the syntax
   tree, it doesn't actually change the valid syntax.
 - A few nodes like `lambdef` and `lambdef_nocond` have been merged in the
@@ -48,11 +48,11 @@ try:
 except ImportError:
     from collections import Mapping
 
-from parso._compatibility import utf8_repr, unicode
-from parso.tree import Node, BaseNode, Leaf, ErrorNode, ErrorLeaf, \
+from marso._compatibility import utf8_repr, unicode
+from marso.tree import Node, BaseNode, Leaf, ErrorNode, ErrorLeaf, \
     search_ancestor
-from parso.python.prefix import split_prefix
-from parso.utils import split_lines
+from marso.python.prefix import split_prefix
+from marso.utils import split_lines
 
 _FLOW_CONTAINERS = set(['if_stmt', 'while_stmt', 'for_stmt', 'try_stmt',
                         'with_stmt', 'async_stmt', 'suite'])
@@ -127,7 +127,7 @@ class PythonLeaf(PythonMixin, Leaf):
 
     def get_start_pos_of_prefix(self):
         """
-        Basically calls :py:meth:`parso.tree.NodeOrLeaf.get_start_pos_of_prefix`.
+        Basically calls :py:meth:`marso.tree.NodeOrLeaf.get_start_pos_of_prefix`.
         """
         # TODO it is really ugly that we have to override it. Maybe change
         #   indent error leafs somehow? No idea how, though.
@@ -1241,7 +1241,7 @@ class SyncCompFor(PythonBaseNode):
         return _defined_names(self.children[1], include_setitem)
 
 
-# This is simply here so an older Jedi version can work with this new parso
+# This is simply here so an older Jedi version can work with this new marso
 # version. Can be deleted in the next release.
 CompFor = SyncCompFor
 

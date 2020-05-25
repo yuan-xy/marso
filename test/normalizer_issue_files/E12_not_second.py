@@ -190,7 +190,7 @@ d = {  # comment
     1: 2
 }
 
-# issue 138 (we won't allow this in parso)
+# issue 138 (we won't allow this in marso)
 #: E126+2:9
 [
     12,  # this is a multi-line inline

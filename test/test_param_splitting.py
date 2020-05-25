@@ -5,7 +5,7 @@ instead of simple parser objects.
 
 from textwrap import dedent
 
-from parso import parse
+from marso import parse
 
 
 def assert_params(param_string, version=None, **wanted_dct):

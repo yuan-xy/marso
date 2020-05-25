@@ -4,8 +4,8 @@ from textwrap import dedent
 
 import pytest
 
-from parso import parse
-from parso.python import tree
+from marso import parse
+from marso.python import tree
 
 
 class TestsFunctionAndLambdaParsing(object):

@@ -1,7 +1,7 @@
 import re
 from codecs import BOM_UTF8
 
-from parso.python.tokenize import group
+from marso.python.tokenize import group
 
 unicode_bom = BOM_UTF8.decode('utf-8')
 

@@ -6,7 +6,7 @@ include .coveragerc
 include conftest.py
 include pytest.ini
 include tox.ini
-include parso/python/grammar*.txt
+include marso/python/grammar*.txt
 recursive-include test *
 recursive-include docs *
 recursive-exclude * *.pyc

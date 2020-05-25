@@ -1,5 +1,5 @@
 # The issue numbers described in this file are part of the pycodestyle tracker
-# and not of parso.
+# and not of marso.
 # Originally there were no issues in here, I (dave) added the ones that were
 # necessary and IMO useful.
 if (

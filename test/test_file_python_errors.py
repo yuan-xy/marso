@@ -1,6 +1,6 @@
 import os
 
-import parso
+import marso
 
 
 def get_python_files(path):
@@ -12,11 +12,11 @@ def get_python_files(path):
 
 def test_on_itself(each_version):
     """
-    There are obviously no syntax erros in the Python code of parso. However
-    parso should output the same for all versions.
+    There are obviously no syntax erros in the Python code of marso. However
+    marso should output the same for all versions.
     """
-    grammar = parso.load_grammar(version=each_version)
-    path = os.path.dirname(os.path.dirname(__file__)) + '/parso'
+    grammar = marso.load_grammar(version=each_version)
+    path = os.path.dirname(os.path.dirname(__file__)) + '/marso'
     for file in get_python_files(path):
         tree = grammar.parse(path=file)
         errors = list(grammar.iter_errors(tree))

@@ -8,7 +8,7 @@ from codecs import BOM_UTF8
 
 import pytest
 
-import parso
+import marso
 
 unicode_bom = BOM_UTF8.decode('utf-8')
 
@@ -29,7 +29,7 @@ unicode_bom = BOM_UTF8.decode('utf-8')
     ('\t\t\n\t', ['\n', '\t']),
 ])
 def test_simple_prefix_splitting(string, tokens):
-    tree = parso.parse(string)
+    tree = marso.parse(string)
     leaf = tree.children[0]
     assert leaf.type == 'endmarker'
 
@@ -59,7 +59,7 @@ def test_simple_prefix_splitting(string, tokens):
     (unicode_bom + ' # ', ['bom', 'comment', 'spacing']),
 ])
 def test_prefix_splitting_types(string, types):
-    tree = parso.parse(string)
+    tree = marso.parse(string)
     leaf = tree.children[0]
     assert leaf.type == 'endmarker'
     parsed_tokens = list(leaf._split_prefix())
@@ -67,11 +67,11 @@ def test_prefix_splitting_types(string, types):
 
 
 def test_utf8_bom():
-    tree = parso.parse(unicode_bom + 'a = 1')
+    tree = marso.parse(unicode_bom + 'a = 1')
     expr_stmt = tree.children[0]
     assert expr_stmt.start_pos == (1, 0)
 
-    tree = parso.parse(unicode_bom + '\n')
+    tree = marso.parse(unicode_bom + '\n')
     endmarker = tree.children[0]
     parts = list(endmarker._split_prefix())
     assert [p.type for p in parts] == ['bom', 'newline', 'spacing']

@@ -1,9 +1,9 @@
 import re
 from contextlib import contextmanager
 
-from parso.python.errors import ErrorFinder, ErrorFinderConfig
-from parso.normalizer import Rule
-from parso.python.tree import search_ancestor, Flow, Scope
+from marso.python.errors import ErrorFinder, ErrorFinderConfig
+from marso.normalizer import Rule
+from marso.python.tree import search_ancestor, Flow, Scope
 
 
 _IMPORT_TYPES = ('import_name', 'import_from')

@@ -9,7 +9,7 @@ cd $BASE_DIR
 
 git fetch --tags
 
-PROJECT_NAME=parso
+PROJECT_NAME=marso
 BRANCH=master
 BUILD_FOLDER=build
 

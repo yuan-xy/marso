@@ -1,17 +1,17 @@
 ###################################################################
-parso - A Python Parser
+marso - A Python Parser
 ###################################################################
 
 
-.. image:: https://travis-ci.org/davidhalter/parso.svg?branch=master
-    :target: https://travis-ci.org/davidhalter/parso
+.. image:: https://travis-ci.org/davidhalter/marso.svg?branch=master
+    :target: https://travis-ci.org/davidhalter/marso
     :alt: Travis CI build status
 
-.. image:: https://coveralls.io/repos/github/davidhalter/parso/badge.svg?branch=master
-    :target: https://coveralls.io/github/davidhalter/parso?branch=master
+.. image:: https://coveralls.io/repos/github/davidhalter/marso/badge.svg?branch=master
+    :target: https://coveralls.io/github/davidhalter/marso?branch=master
     :alt: Coverage Status
 
-.. image:: https://raw.githubusercontent.com/davidhalter/parso/master/docs/_static/logo_characters.png
+.. image:: https://raw.githubusercontent.com/davidhalter/marso/master/docs/_static/logo_characters.png
 
 Parso is a Python parser that supports error recovery and round-trip parsing
 for different Python versions (in multiple Python versions). Parso is also able
@@ -26,8 +26,8 @@ A simple example:
 
 .. code-block:: python
 
-    >>> import parso
-    >>> module = parso.parse('hello + 1', version="3.6")
+    >>> import marso
+    >>> module = marso.parse('hello + 1', version="3.6")
     >>> expr = module.children[0]
     >>> expr
     PythonNode(arith_expr, [<Name: hello@1,0>, <Operator: +>, <Number: 1>])
@@ -45,7 +45,7 @@ To list multiple issues:
 
 .. code-block:: python
 
-    >>> grammar = parso.load_grammar()
+    >>> grammar = marso.load_grammar()
     >>> module = grammar.parse('foo +\nbar\ncontinue')
     >>> error1, error2 = grammar.iter_errors(module)
     >>> error1.message
@@ -56,15 +56,15 @@ To list multiple issues:
 Resources
 =========
 
-- `Testing <https://parso.readthedocs.io/en/latest/docs/development.html#testing>`_
-- `PyPI <https://pypi.python.org/pypi/parso>`_
-- `Docs <https://parso.readthedocs.org/en/latest/>`_
+- `Testing <https://marso.readthedocs.io/en/latest/docs/development.html#testing>`_
+- `PyPI <https://pypi.python.org/pypi/marso>`_
+- `Docs <https://marso.readthedocs.org/en/latest/>`_
 - Uses `semantic versioning <https://semver.org/>`_
 
 Installation
 ============
 
-    pip install parso
+    pip install marso
 
 Future
 ======
@@ -85,7 +85,7 @@ Acknowledgements
 - Guido van Rossum (@gvanrossum) for creating the parser generator pgen2
   (originally used in lib2to3).
 - `Salome Schneider <https://www.crepes-schnaegg.ch/cr%C3%AApes-schn%C3%A4gg/kunst-f%C3%BCrs-cr%C3%AApes-mobil/>`_
-  for the extremely awesome parso logo.
+  for the extremely awesome marso logo.
 
 
 .. _jedi: https://github.com/davidhalter/jedi

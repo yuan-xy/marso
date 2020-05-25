@@ -3,10 +3,10 @@ from textwrap import dedent
 
 import pytest
 
-from parso._compatibility import u
-from parso import parse
-from parso.python import tree
-from parso.utils import split_lines
+from marso._compatibility import u
+from marso import parse
+from marso.python import tree
+from marso.utils import split_lines
 
 
 def test_basic_parsing(each_version):

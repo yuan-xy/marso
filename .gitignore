@@ -7,7 +7,7 @@
 /build/
 /docs/_build/
 /dist/
-parso.egg-info/
+marso.egg-info/
 /.cache/
 /.pytest_cache
 test/fuzz-redo.pickle

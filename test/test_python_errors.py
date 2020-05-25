@@ -1,15 +1,15 @@
 """
-Testing if parso finds syntax errors and indentation errors.
+Testing if marso finds syntax errors and indentation errors.
 """
 import sys
 import warnings
 
 import pytest
 
-import parso
+import marso
 
 from textwrap import dedent
-from parso._compatibility import is_pypy
+from marso._compatibility import is_pypy
 from .failing_examples import FAILING_EXAMPLES, indent, build_nested
 
 
@@ -19,7 +19,7 @@ if is_pypy:
 
 
 def _get_error_list(code, version=None):
-    grammar = parso.load_grammar(version=version)
+    grammar = marso.load_grammar(version=version)
     tree = grammar.parse(code)
     return list(grammar.iter_errors(tree))
 

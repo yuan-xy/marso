@@ -28,11 +28,11 @@ import os
 import random
 import pickle
 
-import parso
-from parso.utils import split_lines
+import marso
+from marso.utils import split_lines
 from test.test_diff_parser import _check_error_leaves_nodes
 
-_latest_grammar = parso.load_grammar(version='3.8')
+_latest_grammar = marso.load_grammar(version='3.8')
 _python_reserved_strings = tuple(
     # Keywords are ususally only interesting in combination with spaces after
     # them. We don't put a space before keywords, to avoid indentation errors.
@@ -266,8 +266,8 @@ def main(arguments):
         ch.setLevel(logging.DEBUG)
         root.addHandler(ch)
 
-    grammar = parso.load_grammar()
-    parso.python.diff.DEBUG_DIFF_PARSER = True
+    grammar = marso.load_grammar()
+    marso.python.diff.DEBUG_DIFF_PARSER = True
     if arguments['redo']:
         with open(redo_file, 'rb') as f:
             file_tests_obj = pickle.load(f)

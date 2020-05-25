@@ -1,12 +1,12 @@
 from codecs import BOM_UTF8
 
-from parso.utils import (
+from marso.utils import (
     split_lines,
     parse_version_string,
     python_bytes_to_unicode,
 )
 
-import parso
+import marso
 
 import pytest
 
@@ -59,12 +59,12 @@ def test_python_bytes_to_unicode_unicode_text():
 def test_utf8_bom():
     unicode_bom = BOM_UTF8.decode('utf-8')
 
-    module = parso.parse(unicode_bom)
+    module = marso.parse(unicode_bom)
     endmarker = module.children[0]
     assert endmarker.type == 'endmarker'
     assert unicode_bom == endmarker.prefix
 
-    module = parso.parse(unicode_bom + 'foo = 1')
+    module = marso.parse(unicode_bom + 'foo = 1')
     expr_stmt = module.children[0]
     assert expr_stmt.type == 'expr_stmt'
     assert unicode_bom == expr_stmt.get_first_leaf().prefix

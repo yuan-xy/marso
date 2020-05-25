@@ -1,6 +1,6 @@
-from parso.python import tree
-from parso.python.token import PythonTokenTypes
-from parso.parser import BaseParser
+from marso.python import tree
+from marso.python.token import PythonTokenTypes
+from marso.parser import BaseParser
 
 
 NAME = PythonTokenTypes.NAME

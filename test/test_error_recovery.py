@@ -1,6 +1,6 @@
 from textwrap import dedent
 
-from parso import parse, load_grammar
+from marso import parse, load_grammar
 
 
 def test_with_stmt():

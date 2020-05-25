@@ -7,12 +7,12 @@ from os import unlink
 import pytest
 import time
 
-from parso.cache import _NodeCacheItem, save_module, load_module, \
+from marso.cache import _NodeCacheItem, save_module, load_module, \
     _get_hashed_path, parser_cache, _load_from_file_system, _save_to_file_system
-from parso import load_grammar
-from parso import cache
-from parso import file_io
-from parso import parse
+from marso import load_grammar
+from marso import cache
+from marso import file_io
+from marso import parse
 
 
 @pytest.fixture()

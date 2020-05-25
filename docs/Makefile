@@ -77,17 +77,17 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/parso.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/marso.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/parso.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/marso.qhc"
 
 devhelp:
 	$(SPHINXBUILD) -b devhelp $(ALLSPHINXOPTS) $(BUILDDIR)/devhelp
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/parso"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/parso"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/marso"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/marso"
 	@echo "# devhelp"
 
 epub:
