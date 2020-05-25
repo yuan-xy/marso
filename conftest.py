@@ -42,16 +42,7 @@ def pytest_addoption(parser):
 
 
 def pytest_generate_tests(metafunc):
-    if 'normalizer_issue_case' in metafunc.fixturenames:
-        base_dir = os.path.join(os.path.dirname(__file__), 'test', 'normalizer_issue_files')
-
-        cases = list(colllect_normalizer_tests(base_dir))
-        metafunc.parametrize(
-            'normalizer_issue_case',
-            cases,
-            ids=[c.name for c in cases]
-        )
-    elif 'each_version' in metafunc.fixturenames:
+    if 'each_version' in metafunc.fixturenames:
         metafunc.parametrize('each_version', VERSIONS_2 + VERSIONS_3)
     elif 'each_py2_version' in metafunc.fixturenames:
         metafunc.parametrize('each_py2_version', VERSIONS_2)

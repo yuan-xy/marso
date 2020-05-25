@@ -64,5 +64,5 @@ Used By
 - mutmut_ (mutation tester)
 
 
-.. _jedi: https://github.com/davidhalter/jedi
+.. _jedi: https://github.com/yuan_xy/jedi
 .. _mutmut: https://github.com/boxed/mutmut

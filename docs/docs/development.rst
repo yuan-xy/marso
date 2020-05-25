@@ -35,4 +35,4 @@ easy as::
     tox -e py27
 
 Tests are also run automatically on `Travis CI
-<https://travis-ci.org/davidhalter/marso/>`_.
+<https://travis-ci.org/yuan_xy/marso/>`_.

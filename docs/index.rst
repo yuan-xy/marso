@@ -26,6 +26,6 @@ Docs
 Resources
 ---------
 
-- `Source Code on Github <https://github.com/davidhalter/marso>`_
-- `Travis Testing <https://travis-ci.org/davidhalter/marso>`_
+- `Source Code on Github <https://github.com/yuan_xy/marso>`_
+- `Travis Testing <https://travis-ci.org/yuan_xy/marso>`_
 - `Python Package Index <http://pypi.python.org/pypi/marso/>`_
