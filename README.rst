@@ -11,7 +11,6 @@ marso - A Move(Libra) Parser
     :target: https://coveralls.io/github/yuan-xy/marso?branch=master
     :alt: Coverage Status
 
-.. image:: https://raw.githubusercontent.com/yuan-xy/marso/master/docs/_static/logo_characters.png
 
 Marso is a Move language parser that supports error recovery and round-trip parsing
 . Marso is also able to list multiple syntax errors in your move source file.
