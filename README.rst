@@ -3,24 +3,22 @@ marso - A Move(Libra) Parser
 ###################################################################
 
 
-.. image:: https://travis-ci.org/davidhalter/marso.svg?branch=master
-    :target: https://travis-ci.org/davidhalter/marso
+.. image:: https://travis-ci.org/yuan-xy/marso.svg?branch=master
+    :target: https://travis-ci.org/yuan-xy/marso
     :alt: Travis CI build status
 
-.. image:: https://coveralls.io/repos/github/davidhalter/marso/badge.svg?branch=master
-    :target: https://coveralls.io/github/davidhalter/marso?branch=master
+.. image:: https://coveralls.io/repos/github/yuan-xy/marso/badge.svg?branch=master
+    :target: https://coveralls.io/github/yuan-xy/marso?branch=master
     :alt: Coverage Status
 
-.. image:: https://raw.githubusercontent.com/davidhalter/marso/master/docs/_static/logo_characters.png
+.. image:: https://raw.githubusercontent.com/yuan-xy/marso/master/docs/_static/logo_characters.png
 
-Marso is a Move Lang parser that supports error recovery and round-trip parsing
-for different Python versions (in multiple Python versions). Marso is also able
-to list multiple syntax errors in your python file.
+Marso is a Move language parser that supports error recovery and round-trip parsing
+. Marso is also able to list multiple syntax errors in your move source file.
 
-Marso has been battle-tested by jedi_. It was pulled out of jedi to be useful
-for other projects as well.
+Marso has been battle-tested by jedi_. 
 
-Marso consists of a small API to parse Python and analyse the syntax tree.
+Marso consists of a small API to parse Move language and analyse the syntax tree.
 
 A simple example:
 
@@ -66,17 +64,6 @@ Installation
 
     pip install marso
 
-Future
-======
-
-- There will be better support for refactoring and comments. Stay tuned.
-- There's a WIP PEP8 validator. It's however not in a good shape, yet.
-
-Known Issues
-============
-
-- `async`/`await` are already used as keywords in Python3.6.
-- `from __future__ import print_function` is not ignored.
 
 
 Acknowledgements
@@ -88,4 +75,4 @@ Acknowledgements
   for the extremely awesome marso logo.
 
 
-.. _jedi: https://github.com/davidhalter/jedi
+.. _jedi: https://github.com/yuan-xy/jedi

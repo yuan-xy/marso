@@ -7,8 +7,8 @@ from setuptools import setup, find_packages
 import marso
 
 
-__AUTHOR__ = 'David Halter'
-__AUTHOR_EMAIL__ = 'davidhalter88@gmail.com'
+__AUTHOR__ = 'Yuan xy'
+__AUTHOR_EMAIL__ = 'yuan_xin_yu@hotmail.com'
 
 readme = open('README.rst').read() + '\n\n' + open('CHANGELOG.rst').read()
 
@@ -20,7 +20,7 @@ setup(name='marso',
       include_package_data=True,
       maintainer=__AUTHOR__,
       maintainer_email=__AUTHOR_EMAIL__,
-      url='https://github.com/davidhalter/marso',
+      url='https://github.com/yuan-xy/marso',
       license='MIT',
       keywords='python parser parsing',
       long_description=readme,
