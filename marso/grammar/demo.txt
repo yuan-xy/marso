@@ -1,0 +1,6 @@
+grammar: (NEWLINE | rule)* ENDMARKER
+rule: NAME ':' rhs NEWLINE
+rhs: items ('|' items)*
+items: item+
+item: '[' rhs ']' | atom ['+' | '*']
+atom: '(' rhs ')' | NAME | STRING

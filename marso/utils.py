@@ -177,7 +177,7 @@ def parse_version_string(version=None):
     returns a corresponding version info that is always two characters long in
     decimal.
     """
-    if version is None:
+    if not version:
         version = '%s.%s' % sys.version_info[:2]
     if not isinstance(version, (unicode, str)):
         raise TypeError('version must be a string like "3.8"')

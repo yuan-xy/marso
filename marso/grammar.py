@@ -232,16 +232,22 @@ def load_grammar(**kwargs):
     :param str version: A python version string, e.g. ``version='3.8'``.
     :param str path: A path to a grammar file
     """
-    def load_grammar(language='python', version=None, path=None):
-        if language not in ['python', 'move', 'mvir']:
+    def load_grammar(language='python', version='', path=None):
+        if language not in ['python', 'move', 'mvir', 'demo']:
             raise NotImplementedError("No support for language %s." % language)
 
-        version_info = parse_version_string(version)
+        if language == 'python':
+            version_info = parse_version_string(version)
 
-        file = path or os.path.join(
-            'grammar',
-            '%s%s%s.txt' % (language, version_info.major, version_info.minor)
-        )
+            file = path or os.path.join(
+                'grammar',
+                '%s%s%s.txt' % (language, version_info.major, version_info.minor)
+            )
+        else:
+            file = path or os.path.join(
+                'grammar',
+                '%s%s.txt' % (language, version)
+            )
 
         global _loaded_grammars
         path = os.path.join(os.path.dirname(__file__), file)
@@ -252,7 +258,14 @@ def load_grammar(**kwargs):
                 with open(path) as f:
                     bnf_text = f.read()
 
-                grammar = PythonGrammar(version_info, bnf_text)
+                if language == 'python':
+                    grammar = PythonGrammar(version_info, bnf_text)
+                elif language == 'demo':
+                    from marso.demo_grammar import DemoGrammar
+                    grammar = DemoGrammar(bnf_text)
+                else:
+                    raise FileNotFoundError()
+
                 return _loaded_grammars.setdefault(path, grammar)
             except FileNotFoundError:
                 message = "Python version %s.%s is currently not supported." % (version_info.major, version_info.minor)
