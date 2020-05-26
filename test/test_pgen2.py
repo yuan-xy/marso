@@ -75,57 +75,6 @@ def test_await_expr(works_ge_py35):
     """)
 
 
-@pytest.mark.skipif('sys.version_info[:2] < (3, 5)')
-@pytest.mark.xfail(reason="acting like python 3.7")
-def test_async_var():
-    _parse("""async = 1""", "3.5")
-    _parse("""await = 1""", "3.5")
-    _parse("""def async(): pass""", "3.5")
-
-
-def test_async_for(works_ge_py35):
-    works_ge_py35.parse("async def foo():\n async for a in b: pass")
-
-
-def test_async_with(works_ge_py35):
-    works_ge_py35.parse("async def foo():\n async with a: pass")
-
-    @pytest.mark.skipif('sys.version_info[:2] < (3, 5)')
-    @pytest.mark.xfail(reason="acting like python 3.7")
-    def test_async_with_invalid():
-        _invalid_syntax("""def foo():
-                                   async with a: pass""", version="3.5")
-
-
-def test_raise_3x_style_1(each_version):
-    _parse("raise", each_version)
-
-
-def test_raise_2x_style_2(works_in_py2):
-    works_in_py2.parse("raise E, V")
-
-def test_raise_2x_style_3(works_in_py2):
-    works_in_py2.parse("raise E, V, T")
-
-def test_raise_2x_style_invalid_1(each_version):
-    _invalid_syntax("raise E, V, T, Z", version=each_version)
-
-def test_raise_3x_style(works_ge_py3):
-    works_ge_py3.parse("raise E1 from E2")
-
-def test_raise_3x_style_invalid_1(each_version):
-    _invalid_syntax("raise E, V from E1", each_version)
-
-def test_raise_3x_style_invalid_2(each_version):
-    _invalid_syntax("raise E from E1, E2", each_version)
-
-def test_raise_3x_style_invalid_3(each_version):
-    _invalid_syntax("raise from E1, E2", each_version)
-
-def test_raise_3x_style_invalid_4(each_version):
-    _invalid_syntax("raise E from", each_version)
-
-
 # Adapted from Python 3's Lib/test/test_grammar.py:GrammarTests.testFuncdef
 def test_annotation_1(works_ge_py3):
     works_ge_py3.parse("""def f(x) -> list: pass""")

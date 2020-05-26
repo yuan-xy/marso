@@ -26,7 +26,7 @@ class TestsFunctionAndLambdaParsing(object):
 
     @pytest.fixture(params=FIXTURES)
     def node(self, request):
-        parsed = parse(dedent(request.param[0]), version='3.5')
+        parsed = parse(dedent(request.param[0]), version='3.6')
         request.keywords['expected'] = request.param[1]
         child = parsed.children[0]
         if child.type == 'simple_stmt':
