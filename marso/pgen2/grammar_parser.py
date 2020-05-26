@@ -2,13 +2,12 @@
 # Licensed to PSF under a Contributor Agreement.
 
 # Modifications:
-# Copyright David Halter and Contributors
+# Copyright Yuan xy and others
 # Modifications are dual-licensed: MIT and PSF.
 
-from marso.python.tokenizer import tokenize
-from marso.utils import parse_version_string
-from marso.python.token import PythonTokenTypes
-
+from io import StringIO
+from tokenize import tokenize
+import token
 
 class GrammarParser():
     """
@@ -16,24 +15,26 @@ class GrammarParser():
     """
     def __init__(self, bnf_grammar):
         self._bnf_grammar = bnf_grammar
-        self.generator = tokenize(
-            bnf_grammar,
-            version_info=parse_version_string('3.6')
-        )
+        self.readline = StringIO(bnf_grammar).readline
+        self.generator = tokenize(self._readline)
+        next(self.generator) # Skip BOM at (0, 0)
         self._gettoken()  # Initialize lookahead
+
+    def _readline(self, size=-1):
+        return self.readline(size).encode() #change str to bytes, as tokenize needs bytes
 
     def parse(self):
         # grammar: (NEWLINE | rule)* ENDMARKER
-        while self.type != PythonTokenTypes.ENDMARKER:
-            while self.type == PythonTokenTypes.NEWLINE:
+        while self.type != token.ENDMARKER:
+            while self.type == token.NEWLINE:
                 self._gettoken()
 
             # rule: NAME ':' rhs NEWLINE
-            self._current_rule_name = self._expect(PythonTokenTypes.NAME)
-            self._expect(PythonTokenTypes.OP, ':')
+            self._current_rule_name = self._expect(token.NAME)
+            self._expect(token.OP, ':')
 
             a, z = self._parse_rhs()
-            self._expect(PythonTokenTypes.NEWLINE)
+            self._expect(token.NEWLINE)
 
             yield a, z
 
@@ -60,7 +61,7 @@ class GrammarParser():
     def _parse_items(self):
         # items: item+
         a, b = self._parse_item()
-        while self.type in (PythonTokenTypes.NAME, PythonTokenTypes.STRING) \
+        while self.type in (token.NAME, token.STRING) \
                 or self.value in ('(', '['):
             c, d = self._parse_item()
             # Need to end on the next item.
@@ -73,7 +74,7 @@ class GrammarParser():
         if self.value == "[":
             self._gettoken()
             a, z = self._parse_rhs()
-            self._expect(PythonTokenTypes.OP, ']')
+            self._expect(token.OP, ']')
             # Make it also possible that there is no token and change the
             # state.
             a.add_arc(z)
@@ -98,9 +99,9 @@ class GrammarParser():
         if self.value == "(":
             self._gettoken()
             a, z = self._parse_rhs()
-            self._expect(PythonTokenTypes.OP, ')')
+            self._expect(token.OP, ')')
             return a, z
-        elif self.type in (PythonTokenTypes.NAME, PythonTokenTypes.STRING):
+        elif self.type in (token.NAME, token.STRING):
             a = NFAState(self._current_rule_name)
             z = NFAState(self._current_rule_name)
             # Make it clear that the state transition requires that value.
@@ -123,7 +124,10 @@ class GrammarParser():
 
     def _gettoken(self):
         tup = next(self.generator)
-        self.type, self.value, self.begin, prefix = tup
+        while tup[0] == token.COMMENT or tup[0] == token.NL:
+            tup = next(self.generator)
+
+        self.type, self.value, self.begin, _end, prefix = tup
 
     def _raise_error(self, msg, *args):
         if args:
