@@ -5,8 +5,8 @@
 # Copyright Yuan xy and others
 # Modifications are dual-licensed: MIT and PSF.
 
-from io import BytesIO
-from tokenize import tokenize
+from io import StringIO
+from tokenize import generate_tokens
 import token
 
 class GrammarParser():
@@ -15,8 +15,7 @@ class GrammarParser():
     """
     def __init__(self, bnf_grammar):
         self._bnf_grammar = bnf_grammar
-        self.generator = tokenize(BytesIO(bnf_grammar.encode('utf-8')).readline)
-        next(self.generator) # Skip BOM at (0, 0)
+        self.generator = generate_tokens(StringIO(bnf_grammar).readline)
         self._gettoken()  # Initialize lookahead
 
     def parse(self):
