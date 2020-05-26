@@ -5,7 +5,7 @@
 # Copyright Yuan xy and others
 # Modifications are dual-licensed: MIT and PSF.
 
-from io import StringIO
+from io import BytesIO
 from tokenize import tokenize
 import token
 
@@ -15,13 +15,9 @@ class GrammarParser():
     """
     def __init__(self, bnf_grammar):
         self._bnf_grammar = bnf_grammar
-        self.readline = StringIO(bnf_grammar).readline
-        self.generator = tokenize(self._readline)
+        self.generator = tokenize(BytesIO(bnf_grammar.encode('utf-8')).readline)
         next(self.generator) # Skip BOM at (0, 0)
         self._gettoken()  # Initialize lookahead
-
-    def _readline(self, size=-1):
-        return self.readline(size).encode() #change str to bytes, as tokenize needs bytes
 
     def parse(self):
         # grammar: (NEWLINE | rule)* ENDMARKER
