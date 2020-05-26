@@ -13,7 +13,6 @@ from marso.utils import parse_version_string
 
 collect_ignore = ["setup.py"]
 
-VERSIONS_2 = '2.7',
 VERSIONS_3 = '3.6', '3.7', '3.8'
 
 
@@ -43,9 +42,9 @@ def pytest_addoption(parser):
 
 def pytest_generate_tests(metafunc):
     if 'each_version' in metafunc.fixturenames:
-        metafunc.parametrize('each_version', VERSIONS_2 + VERSIONS_3)
+        metafunc.parametrize('each_version', VERSIONS_3)
     elif 'each_py2_version' in metafunc.fixturenames:
-        metafunc.parametrize('each_py2_version', VERSIONS_2)
+        metafunc.parametrize('each_py2_version', [])
     elif 'each_py3_version' in metafunc.fixturenames:
         metafunc.parametrize('each_py3_version', VERSIONS_3)
     elif 'version_ge_py36' in metafunc.fixturenames:
