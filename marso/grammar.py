@@ -233,29 +233,29 @@ def load_grammar(**kwargs):
     :param str path: A path to a grammar file
     """
     def load_grammar(language='python', version=None, path=None):
-        if language == 'python':
-            version_info = parse_version_string(version)
-
-            file = path or os.path.join(
-                'python',
-                'grammar%s%s.txt' % (version_info.major, version_info.minor)
-            )
-
-            global _loaded_grammars
-            path = os.path.join(os.path.dirname(__file__), file)
-            if path in _loaded_grammars:
-                return _loaded_grammars[path]
-            else:
-                try:
-                    with open(path) as f:
-                        bnf_text = f.read()
-
-                    grammar = PythonGrammar(version_info, bnf_text)
-                    return _loaded_grammars.setdefault(path, grammar)
-                except FileNotFoundError:
-                    message = "Python version %s.%s is currently not supported." % (version_info.major, version_info.minor)
-                    raise NotImplementedError(message)
-        else:
+        if language not in ['python', 'move', 'mvir']:
             raise NotImplementedError("No support for language %s." % language)
+
+        version_info = parse_version_string(version)
+
+        file = path or os.path.join(
+            'grammar',
+            '%s%s%s.txt' % (language, version_info.major, version_info.minor)
+        )
+
+        global _loaded_grammars
+        path = os.path.join(os.path.dirname(__file__), file)
+        if path in _loaded_grammars:
+            return _loaded_grammars[path]
+        else:
+            try:
+                with open(path) as f:
+                    bnf_text = f.read()
+
+                grammar = PythonGrammar(version_info, bnf_text)
+                return _loaded_grammars.setdefault(path, grammar)
+            except FileNotFoundError:
+                message = "Python version %s.%s is currently not supported." % (version_info.major, version_info.minor)
+                raise NotImplementedError(message)
 
     return load_grammar(**kwargs)
