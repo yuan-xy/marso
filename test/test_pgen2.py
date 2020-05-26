@@ -13,7 +13,7 @@ import pytest
 from marso import load_grammar
 from marso import ParserSyntaxError
 from marso.pgen2 import generate_grammar
-from marso.python import tokenize
+from marso.python import tokenizer
 
 
 def _parse(code, version=None):
@@ -293,7 +293,7 @@ def test_py3_rb(works_ge_py3):
 
 def test_left_recursion():
     with pytest.raises(ValueError, match='left recursion'):
-        generate_grammar('foo: foo NAME\n', tokenize.PythonTokenTypes)
+        generate_grammar('foo: foo NAME\n', tokenizer.PythonTokenTypes)
 
 
 @pytest.mark.parametrize(
@@ -314,4 +314,4 @@ def test_left_recursion():
 )
 def test_ambiguities(grammar, error_match):
     with pytest.raises(ValueError, match=error_match):
-        generate_grammar(grammar, tokenize.PythonTokenTypes)
+        generate_grammar(grammar, tokenizer.PythonTokenTypes)

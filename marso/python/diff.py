@@ -33,7 +33,7 @@ import logging
 from marso.utils import split_lines
 from marso.python.parser import Parser
 from marso.python.tree import EndMarker
-from marso.python.tokenize import PythonToken, BOM_UTF8_STRING
+from marso.python.tokenizer import PythonToken, BOM_UTF8_STRING
 from marso.python.token import PythonTokenTypes
 
 LOG = logging.getLogger(__name__)

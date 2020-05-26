@@ -5,7 +5,7 @@ from marso._compatibility import FileNotFoundError, is_pypy
 from marso.pgen2 import generate_grammar
 from marso.utils import split_lines, python_bytes_to_unicode, parse_version_string
 from marso.python.diff import DiffParser
-from marso.python.tokenize import tokenize_lines, tokenize
+from marso.python.tokenizer import tokenize_lines, tokenize
 from marso.python.token import PythonTokenTypes
 from marso.cache import parser_cache, load_module, save_module
 from marso.parser import BaseParser

@@ -7,9 +7,9 @@ import pytest
 
 from marso.utils import split_lines, parse_version_string
 from marso.python.token import PythonTokenTypes
-from marso.python import tokenize
+from marso.python import tokenizer
 from marso import parse
-from marso.python.tokenize import PythonToken
+from marso.python.tokenizer import PythonToken
 
 
 # To make it easier to access some of the token types, just put them here.
@@ -31,7 +31,7 @@ FSTRING_END = PythonTokenTypes.FSTRING_END
 def _get_token_list(string, version=None):
     # Load the current version.
     version_info = parse_version_string(version)
-    return list(tokenize.tokenize(string, version_info))
+    return list(tokenizer.tokenize(string, version_info))
 
 
 def test_end_pos_one_line():

@@ -2,7 +2,7 @@ import pytest
 from textwrap import dedent
 
 from marso import load_grammar, ParserSyntaxError
-from marso.python.tokenize import tokenize
+from marso.python.tokenizer import tokenize
 
 
 @pytest.fixture

@@ -5,7 +5,7 @@
 # Copyright David Halter and Contributors
 # Modifications are dual-licensed: MIT and PSF.
 
-from marso.python.tokenize import tokenize
+from marso.python.tokenizer import tokenize
 from marso.utils import parse_version_string
 from marso.python.token import PythonTokenTypes
 
