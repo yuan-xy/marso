@@ -243,9 +243,9 @@ def load_grammar(**kwargs):
 
             global _loaded_grammars
             path = os.path.join(os.path.dirname(__file__), file)
-            try:
+            if path in _loaded_grammars:
                 return _loaded_grammars[path]
-            except KeyError:
+            else:
                 try:
                     with open(path) as f:
                         bnf_text = f.read()
