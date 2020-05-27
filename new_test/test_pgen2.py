@@ -8,20 +8,6 @@ from marso.pgen2 import generate_grammar
 import token
 
 
-def test_load_grammar():
-    grammar = load_grammar(language="demo")._pgen_grammar
-    assert grammar.start_nonterminal == 'grammar'
-    nonterminals = {'grammar', 'rule', 'rhs', 'items', 'item', 'atom'}
-    assert nonterminals == {x for x in grammar.nonterminal_to_dfas.keys()}
-    reserved = {':', '|', '[', '*', '+', ']', '(', ')'}
-    assert reserved == {x for x in grammar.reserved_syntax_strings.keys()}
-
-def test_parse_demo_language():
-    code = "abc : def + 's'\n"
-    grammar = load_grammar(language="demo")
-    # ret = grammar.parse(code, error_recovery=False)
-
-
 def _parse(code, version=None):
     code = dedent(code) + "\n\n"
     grammar = load_grammar(version=version)

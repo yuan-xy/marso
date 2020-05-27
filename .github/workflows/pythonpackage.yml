@@ -40,3 +40,4 @@ jobs:
         python setup.py install
         pip install pytest
         pytest test
+        pytest new_test
