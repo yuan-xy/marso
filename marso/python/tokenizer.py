@@ -48,18 +48,6 @@ BOM_UTF8_STRING = BOM_UTF8.decode('utf-8')
 
 _token_collection_cache = {}
 
-if sys.version_info.major >= 3:
-    # Python 3 has str.isidentifier() to check if a char is a valid identifier
-    is_identifier = str.isidentifier
-else:
-    # Python 2 doesn't, but it's not that important anymore and if you tokenize
-    # Python 2 code with this, it's still ok. It's just that parsing Python 3
-    # code with this function is not 100% correct.
-    # This just means that Python 2 code matches a few identifiers too much,
-    # but that doesn't really matter.
-    def is_identifier(s):
-        return True
-
 
 def group(*choices, **kwargs):
     capture = kwargs.pop('capture', False)  # Python 2, arrghhhhh :(
@@ -558,7 +546,7 @@ def tokenize_lines(lines, version_info, start_pos=(1, 0), indents=None, is_first
                     if m is not None:
                         for t in dedent_if_necessary(m.end()):
                             yield t
-                if is_identifier(token):
+                if str.isidentifier(token):
                     yield PythonToken(NAME, token, spos, prefix)
                 else:
                     for t in _split_illegal_unicode_name(token, spos, prefix):
@@ -681,7 +669,7 @@ def _split_illegal_unicode_name(token, start_pos, prefix):
     pos = start_pos
     for i, char in enumerate(token):
         if is_illegal:
-            if is_identifier(char):
+            if str.isidentifier(char):
                 yield create_token()
                 found = char
                 is_illegal = False
@@ -691,7 +679,7 @@ def _split_illegal_unicode_name(token, start_pos, prefix):
                 found += char
         else:
             new_found = found + char
-            if is_identifier(new_found):
+            if str.isidentifier(new_found):
                 found = new_found
             else:
                 if found:
