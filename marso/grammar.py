@@ -261,7 +261,7 @@ def load_grammar(**kwargs):
                 if language == 'python':
                     grammar = PythonGrammar(version_info, bnf_text)
                 elif language == 'demo':
-                    from marso.demo_grammar import DemoGrammar
+                    from marso.demo.demo_grammar import DemoGrammar
                     grammar = DemoGrammar(bnf_text)
                 else:
                     raise FileNotFoundError()
