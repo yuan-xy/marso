@@ -1,4 +1,4 @@
-grammar: (NEWLINE | rule)* ENDMARKER
+file_input: (NEWLINE | rule)* ENDMARKER
 rule: NAME ':' rhs NEWLINE
 rhs: items ('|' items)*
 items: item+

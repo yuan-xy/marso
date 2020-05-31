@@ -3,8 +3,8 @@ from marso import load_grammar
 
 def test_load_grammar():
     grammar = load_grammar(language="demo")._pgen_grammar
-    assert grammar.start_nonterminal == 'grammar'
-    nonterminals = {'grammar', 'rule', 'rhs', 'items', 'item', 'atom'}
+    assert grammar.start_nonterminal == 'file_input'
+    nonterminals = {'file_input', 'rule', 'rhs', 'items', 'item', 'atom'}
     assert nonterminals == {x for x in grammar.nonterminal_to_dfas.keys()}
     reserved = {':', '|', '[', '*', '+', ']', '(', ')'}
     assert reserved == {x for x in grammar.reserved_syntax_strings.keys()}
@@ -16,7 +16,7 @@ def test_parse_demo_language():
     assert root.start_pos == (1, 0)
     assert root.end_pos == (2, 0)
     assert root.parent is None
-    assert root.type == "grammar"
+    assert root.type == "file_input"
     assert root.children.__len__() == 2
     assert root.children[0].type == "rule"
     assert root.children[1].type == "endmarker"
@@ -48,3 +48,13 @@ def test_parse_demo_language():
     assert item.children[0].value == "def"
     assert item.children[1].type == "operator"
     assert item.children[1].value == "+"
+
+def test_parse_demo_lang_error():
+    code = "abc : def + 'ss'\na"
+    grammar = load_grammar(language="demo")
+    root = grammar.parse(code, error_recovery=True)
+
+def test_parse_py_error():
+    code = "abc : def + 'ss'\na"
+    grammar = load_grammar(language="python")
+    root = grammar.parse(code)

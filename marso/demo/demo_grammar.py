@@ -10,7 +10,7 @@ class DemoGrammar(Grammar):
     _default_error_recovery = False
     _error_normalizer_config = ErrorFinderConfig()
     _token_namespace = PythonTokenTypes
-    _start_nonterminal = 'grammar'
+    _start_nonterminal = 'file_input'
 
     def __init__(self, bnf_text):
         super(DemoGrammar, self).__init__(
