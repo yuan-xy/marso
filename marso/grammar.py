@@ -114,10 +114,7 @@ class Grammar(object):
         code = python_bytes_to_unicode(code)
 
         lines = split_lines(code, keepends=True)
-        if diff_cache:
-            if self._diff_parser is None:
-                raise TypeError("You have to define a diff parser to be able "
-                                "to use this option.")
+        if diff_cache and self._diff_parser is not None:
             try:
                 module_cache_item = parser_cache[self._hashed][file_io.path]
             except KeyError:
