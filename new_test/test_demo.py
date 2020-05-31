@@ -1,5 +1,6 @@
 from marso import load_grammar
-
+import marso
+import pytest
 
 def test_load_grammar():
     grammar = load_grammar(language="demo")._pgen_grammar
@@ -52,7 +53,13 @@ def test_parse_demo_language():
 def test_parse_demo_lang_error():
     code = "abc : def + 'ss'\na"
     grammar = load_grammar(language="demo")
-    root = grammar.parse(code, error_recovery=True)
+    root = grammar.parse(code)
+    assert root.children[-2].get_code() == 'a'
+    assert root.children[-1].type == 'endmarker'
+    with pytest.raises(marso.parser.ParserSyntaxError):
+        grammar.parse(code, error_recovery = False)
+
+
 
 def test_parse_py_error():
     code = "abc : def + 'ss'\na"

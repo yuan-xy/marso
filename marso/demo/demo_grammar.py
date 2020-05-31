@@ -7,7 +7,7 @@ from marso.utils import split_lines, parse_version_string
 
 
 class DemoGrammar(Grammar):
-    _default_error_recovery = False
+    _default_error_recovery = True
     _error_normalizer_config = ErrorFinderConfig()
     _token_namespace = PythonTokenTypes
     _start_nonterminal = 'file_input'
