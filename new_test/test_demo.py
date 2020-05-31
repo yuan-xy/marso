@@ -12,7 +12,7 @@ def test_load_grammar():
 def test_parse_demo_language():
     code = "abc : def + 'ss'\n"
     grammar = load_grammar(language="demo")
-    root = grammar.parse(code, error_recovery=False)
+    root = grammar.parse(code)
     assert root.start_pos == (1, 0)
     assert root.end_pos == (2, 0)
     assert root.parent is None

@@ -10,3 +10,4 @@ include marso/grammar/*.txt
 recursive-include test *
 recursive-include docs *
 recursive-exclude * *.pyc
+graft marso
