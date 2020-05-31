@@ -78,7 +78,7 @@ class Grammar(object):
             raise TypeError("parse() got an unexpected keyword argument.")
         return self._parse(code=code, **kwargs)
 
-    def _parse(self, code=None, error_recovery=None, path=None,
+    def _parse(self, code=None, error_recovery=True, path=None,
                start_symbol=None, cache=False, diff_cache=False,
                cache_path=None, file_io=None, start_pos=(1, 0)):
         """
@@ -87,8 +87,6 @@ class Grammar(object):
         start_pos here is just a parameter internally used. Might be public
         sometime in the future.
         """
-        if error_recovery is None:
-            error_recovery = self._default_error_recovery
         if code is None and path is None and file_io is None:
             raise TypeError("Please provide either code or a path.")
 
@@ -202,7 +200,6 @@ class Grammar(object):
 
 
 class PythonGrammar(Grammar):
-    _default_error_recovery = True
     _error_normalizer_config = ErrorFinderConfig()
     _token_namespace = PythonTokenTypes
     _start_nonterminal = 'file_input'
