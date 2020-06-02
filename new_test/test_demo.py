@@ -7,7 +7,7 @@ def test_load_grammar():
     assert grammar.start_nonterminal == 'file_input'
     nonterminals = {'file_input', 'rule', 'rhs', 'items', 'item', 'atom'}
     assert nonterminals == {x for x in grammar.nonterminal_to_dfas.keys()}
-    reserved = {':', '|', '[', '*', '+', ']', '(', ')'}
+    reserved = {':', '|', '[', '*', '+', ']', '(', ')', 'ademo'}
     assert reserved == {x for x in grammar.reserved_syntax_strings.keys()}
 
 def test_parse_demo_language():

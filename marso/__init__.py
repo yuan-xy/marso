@@ -43,7 +43,7 @@ from marso.grammar import Grammar, load_grammar
 from marso.utils import split_lines, python_bytes_to_unicode
 
 
-__version__ = '0.0.2'
+__version__ = '0.0.3'
 
 
 def parse(code=None, **kwargs):

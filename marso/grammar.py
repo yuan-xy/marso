@@ -203,6 +203,7 @@ class PythonGrammar(Grammar):
     _error_normalizer_config = ErrorFinderConfig()
     _token_namespace = PythonTokenTypes
     _start_nonterminal = 'file_input'
+    language = "python"
 
     def __init__(self, version_info, bnf_text):
         super(PythonGrammar, self).__init__(
