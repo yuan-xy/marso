@@ -13,6 +13,17 @@ def _parse(code, version=None):
     grammar = load_grammar(version=version)
     return grammar.parse(code, error_recovery=False)
 
+def test_py_LL1():
+    grammar = load_grammar(version="3.8")
+    st1 = grammar.parse("print('OK') if (a := 1) > 0 else None", error_recovery=False)
+    # https://www.python.org/dev/peps/pep-0617/#some-rules-are-not-actually-ll-1
+    # namedexpr_test: test [':=' test]
+    # should be:
+    # namedexpr_test: NAME [':=' test]
+    # so as to reject following code:
+    st2 = grammar.parse("print('OK') if ([x for x in y] := [1,2,3]) > 0 else None", error_recovery=False)
+
+
 
 
 def test_formfeed(each_version):
