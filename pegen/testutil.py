@@ -7,7 +7,7 @@ import textwrap
 import tokenize
 import token
 
-from typing import Any, cast, Dict, IO, Type, Final
+from typing import Any, cast, Dict, IO, Type
 
 from pegen.build import compile_c_extension
 from pegen.c_generator import CParserGenerator
@@ -15,10 +15,10 @@ from pegen.grammar import Grammar
 from pegen.grammar_parser import GeneratedParser as GrammarParser
 from pegen.parser import Parser
 from pegen.python_generator import PythonParserGenerator
-from pegen.tokenizer import Tokenizer
+from pegen.tokenizer import Tokenizer, exact_token_types
 
 ALL_TOKENS = token.tok_name
-EXACT_TOKENS = token.EXACT_TOKEN_TYPES  # type: ignore
+EXACT_TOKENS = exact_token_types
 NON_EXACT_TOKENS = {
     name for index, name in token.tok_name.items() if index not in EXACT_TOKENS.values()
 }
@@ -105,7 +105,7 @@ def generate_parser_c_extension(
 
 
 def print_memstats() -> bool:
-    MiB: Final = 2 ** 20
+    MiB = 2 ** 20
     try:
         import psutil  # type: ignore
     except ImportError:
