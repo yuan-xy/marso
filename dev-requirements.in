@@ -3,3 +3,8 @@ twine
 setuptools
 wheel
 flake8
+python-walrus
+
+#git clone https://github.com/JarryShaw/walrus.git
+#cd walrus
+#pip install -e .

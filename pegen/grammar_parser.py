@@ -37,17 +37,51 @@ from pegen.grammar import (
     StringLeaf,
 )
 
+
+_walrus_wrapper_GeneratedParser_dict = dict()
+
 class GeneratedParser(Parser):
+    class __WalrusWrapperGeneratedParser:
+        """Wrapper class for assignment expression."""
+
+        @staticmethod
+        def get(name):
+            """Wrapper function for assignment expression."""
+            if name in _walrus_wrapper_GeneratedParser_dict:
+                return _walrus_wrapper_GeneratedParser_dict[name]
+            raise NameError('name %r is not defined' % name)
+
+        @staticmethod
+        def set(name, expr):
+            """Wrapper function for assignment expression."""
+            _walrus_wrapper_GeneratedParser_dict[name] = expr
+            return _walrus_wrapper_GeneratedParser_dict[name]
 
     @memoize
     def start(self) -> Optional[Grammar]:
         # start: grammar $
         mark = self.mark()
         cut = False
+
+        if False:
+            endmarker = grammar = NotImplemented
+
+        def __walrus_wrapper_endmarker_1597a8a171d542829eb82c8245850d7c(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal endmarker
+            endmarker = expr
+            return endmarker
+
+        def __walrus_wrapper_grammar_af75097ae1c746fab98d2edc0fe0f46f(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal grammar
+            grammar = expr
+            return grammar
+
         if (
-            (grammar := self.grammar())
+            (__walrus_wrapper_grammar_af75097ae1c746fab98d2edc0fe0f46f(self.grammar()))
             and
-            (endmarker := self.expect('ENDMARKER'))
+            (__walrus_wrapper_endmarker_1597a8a171d542829eb82c8245850d7c(self.expect('ENDMARKER')))
         ):
             return grammar
         self.reset(mark)
@@ -59,17 +93,39 @@ class GeneratedParser(Parser):
         # grammar: metas rules | rules
         mark = self.mark()
         cut = False
+
+        if False:
+            metas = rules = NotImplemented
+
+        def __walrus_wrapper_metas_494ada01a9ca49508b684438a5d36a1a(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal metas
+            metas = expr
+            return metas
+
+        def __walrus_wrapper_rules_ede2c9a5ec40474cbb682ebd635f2cba(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal rules
+            rules = expr
+            return rules
+
+        def __walrus_wrapper_rules_f15f1d98b4c54538ba9e1a89f8eb9162(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal rules
+            rules = expr
+            return rules
+
         if (
-            (metas := self.metas())
+            (__walrus_wrapper_metas_494ada01a9ca49508b684438a5d36a1a(self.metas()))
             and
-            (rules := self.rules())
+            (__walrus_wrapper_rules_ede2c9a5ec40474cbb682ebd635f2cba(self.rules()))
         ):
             return Grammar ( rules , metas )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (rules := self.rules())
+            (__walrus_wrapper_rules_f15f1d98b4c54538ba9e1a89f8eb9162(self.rules()))
         ):
             return Grammar ( rules , [ ] )
         self.reset(mark)
@@ -81,17 +137,39 @@ class GeneratedParser(Parser):
         # metas: meta metas | meta
         mark = self.mark()
         cut = False
+
+        if False:
+            meta = metas = NotImplemented
+
+        def __walrus_wrapper_meta_fb8e553895894e219af2f563bee0867b(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal meta
+            meta = expr
+            return meta
+
+        def __walrus_wrapper_meta_3201db3bfa7b4d849c486e0f01399d12(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal meta
+            meta = expr
+            return meta
+
+        def __walrus_wrapper_metas_336fdd670a63416bbd61d321cb1d5cba(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal metas
+            metas = expr
+            return metas
+
         if (
-            (meta := self.meta())
+            (__walrus_wrapper_meta_fb8e553895894e219af2f563bee0867b(self.meta()))
             and
-            (metas := self.metas())
+            (__walrus_wrapper_metas_336fdd670a63416bbd61d321cb1d5cba(self.metas()))
         ):
             return [ meta ] + metas
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (meta := self.meta())
+            (__walrus_wrapper_meta_3201db3bfa7b4d849c486e0f01399d12(self.meta()))
         ):
             return [ meta ]
         self.reset(mark)
@@ -103,38 +181,108 @@ class GeneratedParser(Parser):
         # meta: "@" NAME NEWLINE | "@" NAME NAME NEWLINE | "@" NAME STRING NEWLINE
         mark = self.mark()
         cut = False
+
+        if False:
+            a = b = literal = name = newline = string = NotImplemented
+
+        def __walrus_wrapper_a_87959514d95946e49b03406fdb08933b(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal a
+            a = expr
+            return a
+
+        def __walrus_wrapper_b_de0e2563fdd04ed98b3a428c90b1046a(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal b
+            b = expr
+            return b
+
+        def __walrus_wrapper_literal_d214b89f25884a208981c9e58699d142(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_fbb59ccac2524202af4902caf0c796d3(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_ebbcb99b856948a9814f9020ed8c0f92(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_name_fb9e976cf42a4966ae897c508693b53a(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal name
+            name = expr
+            return name
+
+        def __walrus_wrapper_name_1ba5b6320ec44ad69abbcd6ae41dc165(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal name
+            name = expr
+            return name
+
+        def __walrus_wrapper_newline_05d5fe21de9c41da8c94de250564067b(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal newline
+            newline = expr
+            return newline
+
+        def __walrus_wrapper_newline_f6bf9a1af6e845d6b76607e166213814(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal newline
+            newline = expr
+            return newline
+
+        def __walrus_wrapper_newline_1d081d73fdc349a9bdaafa253f88213f(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal newline
+            newline = expr
+            return newline
+
+        def __walrus_wrapper_string_08814610a64a4a848a1709de8ee965dc(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal string
+            string = expr
+            return string
+
         if (
-            (literal := self.expect("@"))
+            (__walrus_wrapper_literal_d214b89f25884a208981c9e58699d142(self.expect("@")))
             and
-            (name := self.name())
+            (__walrus_wrapper_name_fb9e976cf42a4966ae897c508693b53a(self.name()))
             and
-            (newline := self.expect('NEWLINE'))
+            (__walrus_wrapper_newline_05d5fe21de9c41da8c94de250564067b(self.expect('NEWLINE')))
         ):
             return ( name . string , None )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (literal := self.expect("@"))
+            (__walrus_wrapper_literal_fbb59ccac2524202af4902caf0c796d3(self.expect("@")))
             and
-            (a := self.name())
+            (__walrus_wrapper_a_87959514d95946e49b03406fdb08933b(self.name()))
             and
-            (b := self.name())
+            (__walrus_wrapper_b_de0e2563fdd04ed98b3a428c90b1046a(self.name()))
             and
-            (newline := self.expect('NEWLINE'))
+            (__walrus_wrapper_newline_f6bf9a1af6e845d6b76607e166213814(self.expect('NEWLINE')))
         ):
             return ( a . string , b . string )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (literal := self.expect("@"))
+            (__walrus_wrapper_literal_ebbcb99b856948a9814f9020ed8c0f92(self.expect("@")))
             and
-            (name := self.name())
+            (__walrus_wrapper_name_1ba5b6320ec44ad69abbcd6ae41dc165(self.name()))
             and
-            (string := self.string())
+            (__walrus_wrapper_string_08814610a64a4a848a1709de8ee965dc(self.string()))
             and
-            (newline := self.expect('NEWLINE'))
+            (__walrus_wrapper_newline_1d081d73fdc349a9bdaafa253f88213f(self.expect('NEWLINE')))
         ):
             return ( name . string , literal_eval ( string . string ) )
         self.reset(mark)
@@ -146,17 +294,39 @@ class GeneratedParser(Parser):
         # rules: rule rules | rule
         mark = self.mark()
         cut = False
+
+        if False:
+            rule = rules = NotImplemented
+
+        def __walrus_wrapper_rule_5bec0b0088b14a588e0f8f37abbf617b(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal rule
+            rule = expr
+            return rule
+
+        def __walrus_wrapper_rule_0900be6161664398902417abba8153b0(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal rule
+            rule = expr
+            return rule
+
+        def __walrus_wrapper_rules_065909ddd0c24e65807b9753204c6daa(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal rules
+            rules = expr
+            return rules
+
         if (
-            (rule := self.rule())
+            (__walrus_wrapper_rule_5bec0b0088b14a588e0f8f37abbf617b(self.rule()))
             and
-            (rules := self.rules())
+            (__walrus_wrapper_rules_065909ddd0c24e65807b9753204c6daa(self.rules()))
         ):
             return [ rule ] + rules
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (rule := self.rule())
+            (__walrus_wrapper_rule_0900be6161664398902417abba8153b0(self.rule()))
         ):
             return [ rule ]
         self.reset(mark)
@@ -168,56 +338,180 @@ class GeneratedParser(Parser):
         # rule: rulename memoflag? ":" alts NEWLINE INDENT more_alts DEDENT | rulename memoflag? ":" NEWLINE INDENT more_alts DEDENT | rulename memoflag? ":" alts NEWLINE
         mark = self.mark()
         cut = False
+
+        if False:
+            alts = dedent = indent = literal = more_alts = newline = opt = rulename = NotImplemented
+
+        def __walrus_wrapper_alts_53eb0cd07518457ba9dfcfbac2225dca(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal alts
+            alts = expr
+            return alts
+
+        def __walrus_wrapper_alts_241d597c54e449ee91e79224b7913c3e(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal alts
+            alts = expr
+            return alts
+
+        def __walrus_wrapper_dedent_bb70680f4beb42b08ab719e9c295eff1(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal dedent
+            dedent = expr
+            return dedent
+
+        def __walrus_wrapper_dedent_7fe49578a77240399f172604014cb721(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal dedent
+            dedent = expr
+            return dedent
+
+        def __walrus_wrapper_indent_ecd39408763749898249d1321578d55a(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal indent
+            indent = expr
+            return indent
+
+        def __walrus_wrapper_indent_fb11dba4b118490fb2dfed923a1c0276(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal indent
+            indent = expr
+            return indent
+
+        def __walrus_wrapper_literal_98059cec480040f589eb2e4d4054ecf4(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_f572211cda354a6d8ae67388e2238510(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_fd69d9ed413046679c8c218f539ba35c(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_more_alts_181280bd32424c2593dd32aad69393eb(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal more_alts
+            more_alts = expr
+            return more_alts
+
+        def __walrus_wrapper_more_alts_75c0b19cf31a426a89f788d9b12c1dc9(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal more_alts
+            more_alts = expr
+            return more_alts
+
+        def __walrus_wrapper_newline_58d5205f21474ed1ac4742e89ebf6764(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal newline
+            newline = expr
+            return newline
+
+        def __walrus_wrapper_newline_a6afb23eb8b24b49b5dea242773d650a(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal newline
+            newline = expr
+            return newline
+
+        def __walrus_wrapper_newline_7f67f8ac372745fd83b4a66efc47759f(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal newline
+            newline = expr
+            return newline
+
+        def __walrus_wrapper_opt_ce2311b509b843dbbb7bbfe4bec20d24(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal opt
+            opt = expr
+            return opt
+
+        def __walrus_wrapper_opt_1d094d64fe8040bfb4be724d5637cce1(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal opt
+            opt = expr
+            return opt
+
+        def __walrus_wrapper_opt_173e4d439ced4b8f84afc4941a20aab8(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal opt
+            opt = expr
+            return opt
+
+        def __walrus_wrapper_rulename_b7cb68d34da946d79c402e6ae07b5107(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal rulename
+            rulename = expr
+            return rulename
+
+        def __walrus_wrapper_rulename_806159e8e4f443be97b3a3e9bd2ea070(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal rulename
+            rulename = expr
+            return rulename
+
+        def __walrus_wrapper_rulename_6333eb13d9474ef79e2ebbf982f40032(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal rulename
+            rulename = expr
+            return rulename
+
         if (
-            (rulename := self.rulename())
+            (__walrus_wrapper_rulename_b7cb68d34da946d79c402e6ae07b5107(self.rulename()))
             and
-            (opt := self.memoflag(),)
+            (__walrus_wrapper_opt_ce2311b509b843dbbb7bbfe4bec20d24(self.memoflag()),)
             and
-            (literal := self.expect(":"))
+            (__walrus_wrapper_literal_98059cec480040f589eb2e4d4054ecf4(self.expect(":")))
             and
-            (alts := self.alts())
+            (__walrus_wrapper_alts_53eb0cd07518457ba9dfcfbac2225dca(self.alts()))
             and
-            (newline := self.expect('NEWLINE'))
+            (__walrus_wrapper_newline_58d5205f21474ed1ac4742e89ebf6764(self.expect('NEWLINE')))
             and
-            (indent := self.expect('INDENT'))
+            (__walrus_wrapper_indent_ecd39408763749898249d1321578d55a(self.expect('INDENT')))
             and
-            (more_alts := self.more_alts())
+            (__walrus_wrapper_more_alts_181280bd32424c2593dd32aad69393eb(self.more_alts()))
             and
-            (dedent := self.expect('DEDENT'))
+            (__walrus_wrapper_dedent_bb70680f4beb42b08ab719e9c295eff1(self.expect('DEDENT')))
         ):
             return Rule ( rulename [ 0 ] , rulename [ 1 ] , Rhs ( alts . alts + more_alts . alts ) , memo = opt )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (rulename := self.rulename())
+            (__walrus_wrapper_rulename_806159e8e4f443be97b3a3e9bd2ea070(self.rulename()))
             and
-            (opt := self.memoflag(),)
+            (__walrus_wrapper_opt_1d094d64fe8040bfb4be724d5637cce1(self.memoflag()),)
             and
-            (literal := self.expect(":"))
+            (__walrus_wrapper_literal_f572211cda354a6d8ae67388e2238510(self.expect(":")))
             and
-            (newline := self.expect('NEWLINE'))
+            (__walrus_wrapper_newline_a6afb23eb8b24b49b5dea242773d650a(self.expect('NEWLINE')))
             and
-            (indent := self.expect('INDENT'))
+            (__walrus_wrapper_indent_fb11dba4b118490fb2dfed923a1c0276(self.expect('INDENT')))
             and
-            (more_alts := self.more_alts())
+            (__walrus_wrapper_more_alts_75c0b19cf31a426a89f788d9b12c1dc9(self.more_alts()))
             and
-            (dedent := self.expect('DEDENT'))
+            (__walrus_wrapper_dedent_7fe49578a77240399f172604014cb721(self.expect('DEDENT')))
         ):
             return Rule ( rulename [ 0 ] , rulename [ 1 ] , more_alts , memo = opt )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (rulename := self.rulename())
+            (__walrus_wrapper_rulename_6333eb13d9474ef79e2ebbf982f40032(self.rulename()))
             and
-            (opt := self.memoflag(),)
+            (__walrus_wrapper_opt_173e4d439ced4b8f84afc4941a20aab8(self.memoflag()),)
             and
-            (literal := self.expect(":"))
+            (__walrus_wrapper_literal_fd69d9ed413046679c8c218f539ba35c(self.expect(":")))
             and
-            (alts := self.alts())
+            (__walrus_wrapper_alts_241d597c54e449ee91e79224b7913c3e(self.alts()))
             and
-            (newline := self.expect('NEWLINE'))
+            (__walrus_wrapper_newline_7f67f8ac372745fd83b4a66efc47759f(self.expect('NEWLINE')))
         ):
             return Rule ( rulename [ 0 ] , rulename [ 1 ] , alts , memo = opt )
         self.reset(mark)
@@ -229,36 +523,100 @@ class GeneratedParser(Parser):
         # rulename: NAME '[' NAME '*' ']' | NAME '[' NAME ']' | NAME
         mark = self.mark()
         cut = False
+
+        if False:
+            literal = literal_1 = literal_2 = name = type = NotImplemented
+
+        def __walrus_wrapper_literal_42d487ab01584ea4b0c373b236608780(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_89643a5fe1b245a39985c35683dc5e39(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_1_c096a835e84b4494854050086e47b7b7(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal_1
+            literal_1 = expr
+            return literal_1
+
+        def __walrus_wrapper_literal_1_c7e52408abab4a9d85cc5a97b097f780(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal_1
+            literal_1 = expr
+            return literal_1
+
+        def __walrus_wrapper_literal_2_4705e4b3359645979683850fd33a8e02(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal_2
+            literal_2 = expr
+            return literal_2
+
+        def __walrus_wrapper_name_83a1a3148138418f854bfbc14210170f(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal name
+            name = expr
+            return name
+
+        def __walrus_wrapper_name_cd37f1a90e9848ab9f84f74cf7d1a471(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal name
+            name = expr
+            return name
+
+        def __walrus_wrapper_name_8d9db578658b405b9be060bce4b10694(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal name
+            name = expr
+            return name
+
+        def __walrus_wrapper_type_aae0c2a1a507417c9ecf93004c369ddf(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal type
+            type = expr
+            return type
+
+        def __walrus_wrapper_type_12aafd4c8bbe4278856c7fe76adb8a90(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal type
+            type = expr
+            return type
+
         if (
-            (name := self.name())
+            (__walrus_wrapper_name_83a1a3148138418f854bfbc14210170f(self.name()))
             and
-            (literal := self.expect('['))
+            (__walrus_wrapper_literal_42d487ab01584ea4b0c373b236608780(self.expect('[')))
             and
-            (type := self.name())
+            (__walrus_wrapper_type_aae0c2a1a507417c9ecf93004c369ddf(self.name()))
             and
-            (literal_1 := self.expect('*'))
+            (__walrus_wrapper_literal_1_c096a835e84b4494854050086e47b7b7(self.expect('*')))
             and
-            (literal_2 := self.expect(']'))
+            (__walrus_wrapper_literal_2_4705e4b3359645979683850fd33a8e02(self.expect(']')))
         ):
             return ( name . string , type . string + "*" )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (name := self.name())
+            (__walrus_wrapper_name_cd37f1a90e9848ab9f84f74cf7d1a471(self.name()))
             and
-            (literal := self.expect('['))
+            (__walrus_wrapper_literal_89643a5fe1b245a39985c35683dc5e39(self.expect('[')))
             and
-            (type := self.name())
+            (__walrus_wrapper_type_12aafd4c8bbe4278856c7fe76adb8a90(self.name()))
             and
-            (literal_1 := self.expect(']'))
+            (__walrus_wrapper_literal_1_c7e52408abab4a9d85cc5a97b097f780(self.expect(']')))
         ):
             return ( name . string , type . string )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (name := self.name())
+            (__walrus_wrapper_name_8d9db578658b405b9be060bce4b10694(self.name()))
         ):
             return ( name . string , None )
         self.reset(mark)
@@ -270,12 +628,34 @@ class GeneratedParser(Parser):
         # memoflag: '(' 'memo' ')'
         mark = self.mark()
         cut = False
+
+        if False:
+            literal = literal_1 = literal_2 = NotImplemented
+
+        def __walrus_wrapper_literal_d6f4e57e85f141859716b8e6a80c4daa(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_1_d210110c74df434785364bd933149f13(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal_1
+            literal_1 = expr
+            return literal_1
+
+        def __walrus_wrapper_literal_2_a24b7abc4ed64b0bb9675ec033370a4b(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal_2
+            literal_2 = expr
+            return literal_2
+
         if (
-            (literal := self.expect('('))
+            (__walrus_wrapper_literal_d6f4e57e85f141859716b8e6a80c4daa(self.expect('(')))
             and
-            (literal_1 := self.expect('memo'))
+            (__walrus_wrapper_literal_1_d210110c74df434785364bd933149f13(self.expect('memo')))
             and
-            (literal_2 := self.expect(')'))
+            (__walrus_wrapper_literal_2_a24b7abc4ed64b0bb9675ec033370a4b(self.expect(')')))
         ):
             return "memo"
         self.reset(mark)
@@ -287,19 +667,47 @@ class GeneratedParser(Parser):
         # alts: alt "|" alts | alt
         mark = self.mark()
         cut = False
+
+        if False:
+            alt = alts = literal = NotImplemented
+
+        def __walrus_wrapper_alt_3e346f7cf4fd4441a36899ed0fc5151b(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal alt
+            alt = expr
+            return alt
+
+        def __walrus_wrapper_alt_121fb11a006e437f823126be1b0d35f1(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal alt
+            alt = expr
+            return alt
+
+        def __walrus_wrapper_alts_8638c525e92048a1954ef44049cd883c(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal alts
+            alts = expr
+            return alts
+
+        def __walrus_wrapper_literal_7d047ab589444177baa5ba982ce7e4a4(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
         if (
-            (alt := self.alt())
+            (__walrus_wrapper_alt_3e346f7cf4fd4441a36899ed0fc5151b(self.alt()))
             and
-            (literal := self.expect("|"))
+            (__walrus_wrapper_literal_7d047ab589444177baa5ba982ce7e4a4(self.expect("|")))
             and
-            (alts := self.alts())
+            (__walrus_wrapper_alts_8638c525e92048a1954ef44049cd883c(self.alts()))
         ):
             return Rhs ( [ alt ] + alts . alts )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (alt := self.alt())
+            (__walrus_wrapper_alt_121fb11a006e437f823126be1b0d35f1(self.alt()))
         ):
             return Rhs ( [ alt ] )
         self.reset(mark)
@@ -311,25 +719,71 @@ class GeneratedParser(Parser):
         # more_alts: "|" alts NEWLINE more_alts | "|" alts NEWLINE
         mark = self.mark()
         cut = False
+
+        if False:
+            alts = literal = more_alts = newline = NotImplemented
+
+        def __walrus_wrapper_alts_dfe815c0c37b48328f1f579a0843d8e5(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal alts
+            alts = expr
+            return alts
+
+        def __walrus_wrapper_alts_5be6911cd504437d91531e0c609c9aa3(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal alts
+            alts = expr
+            return alts
+
+        def __walrus_wrapper_literal_b2cac7ae0486475fa6c95bd9d7fb72ca(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_722301e56327474481cd5e82e0a55ee8(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_more_alts_d22241d9447f4d27a195ac8fa8b59c20(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal more_alts
+            more_alts = expr
+            return more_alts
+
+        def __walrus_wrapper_newline_f47dab7e233c4b53a8ed9336619d8c0e(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal newline
+            newline = expr
+            return newline
+
+        def __walrus_wrapper_newline_e156c389d7874ca6aab2784e230e89d7(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal newline
+            newline = expr
+            return newline
+
         if (
-            (literal := self.expect("|"))
+            (__walrus_wrapper_literal_b2cac7ae0486475fa6c95bd9d7fb72ca(self.expect("|")))
             and
-            (alts := self.alts())
+            (__walrus_wrapper_alts_dfe815c0c37b48328f1f579a0843d8e5(self.alts()))
             and
-            (newline := self.expect('NEWLINE'))
+            (__walrus_wrapper_newline_f47dab7e233c4b53a8ed9336619d8c0e(self.expect('NEWLINE')))
             and
-            (more_alts := self.more_alts())
+            (__walrus_wrapper_more_alts_d22241d9447f4d27a195ac8fa8b59c20(self.more_alts()))
         ):
             return Rhs ( alts . alts + more_alts . alts )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (literal := self.expect("|"))
+            (__walrus_wrapper_literal_722301e56327474481cd5e82e0a55ee8(self.expect("|")))
             and
-            (alts := self.alts())
+            (__walrus_wrapper_alts_5be6911cd504437d91531e0c609c9aa3(self.alts()))
             and
-            (newline := self.expect('NEWLINE'))
+            (__walrus_wrapper_newline_e156c389d7874ca6aab2784e230e89d7(self.expect('NEWLINE')))
         ):
             return Rhs ( alts . alts )
         self.reset(mark)
@@ -341,37 +795,89 @@ class GeneratedParser(Parser):
         # alt: items '$' action | items '$' | items action | items
         mark = self.mark()
         cut = False
+
+        if False:
+            action = items = literal = NotImplemented
+
+        def __walrus_wrapper_action_c84ab060182f4f5caa67dda47f819d7e(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal action
+            action = expr
+            return action
+
+        def __walrus_wrapper_action_60174517a3364c1491c80cfdd145b786(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal action
+            action = expr
+            return action
+
+        def __walrus_wrapper_items_eb83e826901f49f491496054d3abb976(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal items
+            items = expr
+            return items
+
+        def __walrus_wrapper_items_b0db16cd7f2e4f5bb7b64835b921eb53(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal items
+            items = expr
+            return items
+
+        def __walrus_wrapper_items_91d85c53c2fa4a0daf4a280cd7e1bd0f(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal items
+            items = expr
+            return items
+
+        def __walrus_wrapper_items_aac7c71ceb714f3fa768c7cd784bc0b9(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal items
+            items = expr
+            return items
+
+        def __walrus_wrapper_literal_23f290586fb24237bd3587a1b6373b5d(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_7eea8fd8de1d48bc8edc1810377d16be(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
         if (
-            (items := self.items())
+            (__walrus_wrapper_items_eb83e826901f49f491496054d3abb976(self.items()))
             and
-            (literal := self.expect('$'))
+            (__walrus_wrapper_literal_23f290586fb24237bd3587a1b6373b5d(self.expect('$')))
             and
-            (action := self.action())
+            (__walrus_wrapper_action_c84ab060182f4f5caa67dda47f819d7e(self.action()))
         ):
             return Alt ( items + [ NamedItem ( None , NameLeaf ( 'ENDMARKER' ) ) ] , action = action )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (items := self.items())
+            (__walrus_wrapper_items_b0db16cd7f2e4f5bb7b64835b921eb53(self.items()))
             and
-            (literal := self.expect('$'))
+            (__walrus_wrapper_literal_7eea8fd8de1d48bc8edc1810377d16be(self.expect('$')))
         ):
             return Alt ( items + [ NamedItem ( None , NameLeaf ( 'ENDMARKER' ) ) ] , action = None )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (items := self.items())
+            (__walrus_wrapper_items_91d85c53c2fa4a0daf4a280cd7e1bd0f(self.items()))
             and
-            (action := self.action())
+            (__walrus_wrapper_action_60174517a3364c1491c80cfdd145b786(self.action()))
         ):
             return Alt ( items , action = action )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (items := self.items())
+            (__walrus_wrapper_items_aac7c71ceb714f3fa768c7cd784bc0b9(self.items()))
         ):
             return Alt ( items , action = None )
         self.reset(mark)
@@ -383,17 +889,39 @@ class GeneratedParser(Parser):
         # items: named_item items | named_item
         mark = self.mark()
         cut = False
+
+        if False:
+            items = named_item = NotImplemented
+
+        def __walrus_wrapper_items_431707ab7e0f49d4b1785bf8816fcc3c(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal items
+            items = expr
+            return items
+
+        def __walrus_wrapper_named_item_59e9f2682c2042adbe63b684c791294e(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal named_item
+            named_item = expr
+            return named_item
+
+        def __walrus_wrapper_named_item_cf82b4a90aac417e8d57ab502f9300de(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal named_item
+            named_item = expr
+            return named_item
+
         if (
-            (named_item := self.named_item())
+            (__walrus_wrapper_named_item_59e9f2682c2042adbe63b684c791294e(self.named_item()))
             and
-            (items := self.items())
+            (__walrus_wrapper_items_431707ab7e0f49d4b1785bf8816fcc3c(self.items()))
         ):
             return [ named_item ] + items
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (named_item := self.named_item())
+            (__walrus_wrapper_named_item_cf82b4a90aac417e8d57ab502f9300de(self.named_item()))
         ):
             return [ named_item ]
         self.reset(mark)
@@ -405,28 +933,68 @@ class GeneratedParser(Parser):
         # named_item: NAME '=' ~ item | item | lookahead
         mark = self.mark()
         cut = False
+
+        if False:
+            cut = it = item = literal = name = NotImplemented
+
+        def __walrus_wrapper_cut_5b8f623117ec4f729f5b5e48ee2da4e2(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal cut
+            cut = expr
+            return cut
+
+        def __walrus_wrapper_it_bdc00d6715ad4ac3b87864d30951a08c(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal it
+            it = expr
+            return it
+
+        def __walrus_wrapper_item_b2f2abb81bc44c8f8bcdad12047e7777(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal item
+            item = expr
+            return item
+
+        def __walrus_wrapper_item_2e6d9774c7c4487db8ce9acbdd33b017(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal item
+            item = expr
+            return item
+
+        def __walrus_wrapper_literal_8afee37863004d15a99bf8afe55996aa(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_name_efb38747fcdf4d68a88019e3428b959d(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal name
+            name = expr
+            return name
+
         if (
-            (name := self.name())
+            (__walrus_wrapper_name_efb38747fcdf4d68a88019e3428b959d(self.name()))
             and
-            (literal := self.expect('='))
+            (__walrus_wrapper_literal_8afee37863004d15a99bf8afe55996aa(self.expect('=')))
             and
-            (cut := True)
+            (__walrus_wrapper_cut_5b8f623117ec4f729f5b5e48ee2da4e2(True))
             and
-            (item := self.item())
+            (__walrus_wrapper_item_b2f2abb81bc44c8f8bcdad12047e7777(self.item()))
         ):
             return NamedItem ( name . string , item )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (item := self.item())
+            (__walrus_wrapper_item_2e6d9774c7c4487db8ce9acbdd33b017(self.item()))
         ):
             return NamedItem ( None , item )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (it := self.lookahead())
+            (__walrus_wrapper_it_bdc00d6715ad4ac3b87864d30951a08c(self.lookahead()))
         ):
             return NamedItem ( None , it )
         self.reset(mark)
@@ -438,30 +1006,76 @@ class GeneratedParser(Parser):
         # lookahead: '&' ~ atom | '!' ~ atom | '~'
         mark = self.mark()
         cut = False
+
+        if False:
+            atom = cut = literal = NotImplemented
+
+        def __walrus_wrapper_atom_32b9364a3823487cabf64eb2efea16d1(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal atom
+            atom = expr
+            return atom
+
+        def __walrus_wrapper_atom_ddf91014ff94471280d67b0d475b7284(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal atom
+            atom = expr
+            return atom
+
+        def __walrus_wrapper_cut_008926cbec9d4c9195dfe2d2126d93af(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal cut
+            cut = expr
+            return cut
+
+        def __walrus_wrapper_cut_aced6bd2817d45a5b7010d864322e19f(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal cut
+            cut = expr
+            return cut
+
+        def __walrus_wrapper_literal_406cb2f97d18420589fa2be01cea7de2(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_b84f4f8dec2a47cdbcb42b001d9c1396(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_162388a256fc4631a6978497563eb13d(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
         if (
-            (literal := self.expect('&'))
+            (__walrus_wrapper_literal_406cb2f97d18420589fa2be01cea7de2(self.expect('&')))
             and
-            (cut := True)
+            (__walrus_wrapper_cut_008926cbec9d4c9195dfe2d2126d93af(True))
             and
-            (atom := self.atom())
+            (__walrus_wrapper_atom_32b9364a3823487cabf64eb2efea16d1(self.atom()))
         ):
             return PositiveLookahead ( atom )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (literal := self.expect('!'))
+            (__walrus_wrapper_literal_b84f4f8dec2a47cdbcb42b001d9c1396(self.expect('!')))
             and
-            (cut := True)
+            (__walrus_wrapper_cut_aced6bd2817d45a5b7010d864322e19f(True))
             and
-            (atom := self.atom())
+            (__walrus_wrapper_atom_ddf91014ff94471280d67b0d475b7284(self.atom()))
         ):
             return NegativeLookahead ( atom )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (literal := self.expect('~'))
+            (__walrus_wrapper_literal_162388a256fc4631a6978497563eb13d(self.expect('~')))
         ):
             return Cut ( )
         self.reset(mark)
@@ -473,61 +1087,155 @@ class GeneratedParser(Parser):
         # item: '[' ~ alts ']' | atom '?' | atom '*' | atom '+' | atom '.' atom '+' | atom
         mark = self.mark()
         cut = False
+
+        if False:
+            alts = atom = cut = literal = literal_1 = node = sep = NotImplemented
+
+        def __walrus_wrapper_alts_5e6707f503c04ba08bbeaa6d5f8e0443(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal alts
+            alts = expr
+            return alts
+
+        def __walrus_wrapper_atom_0e499ebf14554b139f9bfd31c1eabc6b(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal atom
+            atom = expr
+            return atom
+
+        def __walrus_wrapper_atom_70ffe95d06764c75a6567960c43fce41(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal atom
+            atom = expr
+            return atom
+
+        def __walrus_wrapper_atom_877b95a7e7164c0a816c43098f08378e(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal atom
+            atom = expr
+            return atom
+
+        def __walrus_wrapper_atom_4b7c90761eb543c699fe154aecd9710e(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal atom
+            atom = expr
+            return atom
+
+        def __walrus_wrapper_cut_bcfa6bbdd79341f19175b66474f42faa(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal cut
+            cut = expr
+            return cut
+
+        def __walrus_wrapper_literal_5cb791f522f542da87a0f8011d6430ae(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_43438a005e954e78b86ba74b522c4f8d(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_f7bd204acb9b49f1bcb2028a068f06f4(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_fd41a50624e54470b15c566250221436(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_b980d400799f46468db7c0c400128d55(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_1_0bca9da990c343799ff57ad26efeff5d(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal_1
+            literal_1 = expr
+            return literal_1
+
+        def __walrus_wrapper_literal_1_bdd92abeaaab4b828567248d00f52e77(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal_1
+            literal_1 = expr
+            return literal_1
+
+        def __walrus_wrapper_node_3430f7f3e4704ba28eee9db3795e37fe(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal node
+            node = expr
+            return node
+
+        def __walrus_wrapper_sep_066db98ef4ba4e6c8a3bef183317d875(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal sep
+            sep = expr
+            return sep
+
         if (
-            (literal := self.expect('['))
+            (__walrus_wrapper_literal_5cb791f522f542da87a0f8011d6430ae(self.expect('[')))
             and
-            (cut := True)
+            (__walrus_wrapper_cut_bcfa6bbdd79341f19175b66474f42faa(True))
             and
-            (alts := self.alts())
+            (__walrus_wrapper_alts_5e6707f503c04ba08bbeaa6d5f8e0443(self.alts()))
             and
-            (literal_1 := self.expect(']'))
+            (__walrus_wrapper_literal_1_0bca9da990c343799ff57ad26efeff5d(self.expect(']')))
         ):
             return Opt ( alts )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (atom := self.atom())
+            (__walrus_wrapper_atom_0e499ebf14554b139f9bfd31c1eabc6b(self.atom()))
             and
-            (literal := self.expect('?'))
+            (__walrus_wrapper_literal_43438a005e954e78b86ba74b522c4f8d(self.expect('?')))
         ):
             return Opt ( atom )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (atom := self.atom())
+            (__walrus_wrapper_atom_70ffe95d06764c75a6567960c43fce41(self.atom()))
             and
-            (literal := self.expect('*'))
+            (__walrus_wrapper_literal_f7bd204acb9b49f1bcb2028a068f06f4(self.expect('*')))
         ):
             return Repeat0 ( atom )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (atom := self.atom())
+            (__walrus_wrapper_atom_877b95a7e7164c0a816c43098f08378e(self.atom()))
             and
-            (literal := self.expect('+'))
+            (__walrus_wrapper_literal_fd41a50624e54470b15c566250221436(self.expect('+')))
         ):
             return Repeat1 ( atom )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (sep := self.atom())
+            (__walrus_wrapper_sep_066db98ef4ba4e6c8a3bef183317d875(self.atom()))
             and
-            (literal := self.expect('.'))
+            (__walrus_wrapper_literal_b980d400799f46468db7c0c400128d55(self.expect('.')))
             and
-            (node := self.atom())
+            (__walrus_wrapper_node_3430f7f3e4704ba28eee9db3795e37fe(self.atom()))
             and
-            (literal_1 := self.expect('+'))
+            (__walrus_wrapper_literal_1_bdd92abeaaab4b828567248d00f52e77(self.expect('+')))
         ):
             return Gather ( sep , node )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (atom := self.atom())
+            (__walrus_wrapper_atom_4b7c90761eb543c699fe154aecd9710e(self.atom()))
         ):
             return atom
         self.reset(mark)
@@ -539,28 +1247,68 @@ class GeneratedParser(Parser):
         # atom: '(' ~ alts ')' | NAME | STRING
         mark = self.mark()
         cut = False
+
+        if False:
+            alts = cut = literal = literal_1 = name = string = NotImplemented
+
+        def __walrus_wrapper_alts_e995303020e74ab68ff58d884d618878(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal alts
+            alts = expr
+            return alts
+
+        def __walrus_wrapper_cut_4382c4bb1ca14823bf812c73ef33ff4f(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal cut
+            cut = expr
+            return cut
+
+        def __walrus_wrapper_literal_8d258c4bf36848379f3d4bed650a7ee7(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_1_9fb0502df0ff470d962bbf20ea379226(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal_1
+            literal_1 = expr
+            return literal_1
+
+        def __walrus_wrapper_name_2f1bf6b172324198962ff688f3233ab3(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal name
+            name = expr
+            return name
+
+        def __walrus_wrapper_string_82270de7c7e74cba97e4471ac09cf8bd(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal string
+            string = expr
+            return string
+
         if (
-            (literal := self.expect('('))
+            (__walrus_wrapper_literal_8d258c4bf36848379f3d4bed650a7ee7(self.expect('(')))
             and
-            (cut := True)
+            (__walrus_wrapper_cut_4382c4bb1ca14823bf812c73ef33ff4f(True))
             and
-            (alts := self.alts())
+            (__walrus_wrapper_alts_e995303020e74ab68ff58d884d618878(self.alts()))
             and
-            (literal_1 := self.expect(')'))
+            (__walrus_wrapper_literal_1_9fb0502df0ff470d962bbf20ea379226(self.expect(')')))
         ):
             return Group ( alts )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (name := self.name())
+            (__walrus_wrapper_name_2f1bf6b172324198962ff688f3233ab3(self.name()))
         ):
             return NameLeaf ( name . string )
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (string := self.string())
+            (__walrus_wrapper_string_82270de7c7e74cba97e4471ac09cf8bd(self.string()))
         ):
             return StringLeaf ( string . string )
         self.reset(mark)
@@ -572,14 +1320,42 @@ class GeneratedParser(Parser):
         # action: "{" ~ target_atoms "}"
         mark = self.mark()
         cut = False
+
+        if False:
+            cut = literal = literal_1 = target_atoms = NotImplemented
+
+        def __walrus_wrapper_cut_04b50b9c4ff041a19906b7b09afbc6e5(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal cut
+            cut = expr
+            return cut
+
+        def __walrus_wrapper_literal_16aad8e864294dcd9ea4dd4594a6c7f5(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_1_c01844ff0f4549259dbbcb76d3bfdce8(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal_1
+            literal_1 = expr
+            return literal_1
+
+        def __walrus_wrapper_target_atoms_e0571e0beb884f17b18e0712646af13c(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal target_atoms
+            target_atoms = expr
+            return target_atoms
+
         if (
-            (literal := self.expect("{"))
+            (__walrus_wrapper_literal_16aad8e864294dcd9ea4dd4594a6c7f5(self.expect("{")))
             and
-            (cut := True)
+            (__walrus_wrapper_cut_04b50b9c4ff041a19906b7b09afbc6e5(True))
             and
-            (target_atoms := self.target_atoms())
+            (__walrus_wrapper_target_atoms_e0571e0beb884f17b18e0712646af13c(self.target_atoms()))
             and
-            (literal_1 := self.expect("}"))
+            (__walrus_wrapper_literal_1_c01844ff0f4549259dbbcb76d3bfdce8(self.expect("}")))
         ):
             return target_atoms
         self.reset(mark)
@@ -591,17 +1367,39 @@ class GeneratedParser(Parser):
         # target_atoms: target_atom target_atoms | target_atom
         mark = self.mark()
         cut = False
+
+        if False:
+            target_atom = target_atoms = NotImplemented
+
+        def __walrus_wrapper_target_atom_d6645b510c634f3e8064a2cba3fb292f(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal target_atom
+            target_atom = expr
+            return target_atom
+
+        def __walrus_wrapper_target_atom_6ed56c06aa4240caa6eda492ca4bfb54(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal target_atom
+            target_atom = expr
+            return target_atom
+
+        def __walrus_wrapper_target_atoms_69fa4fc6de7a4a3db57c23b85e7957ad(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal target_atoms
+            target_atoms = expr
+            return target_atoms
+
         if (
-            (target_atom := self.target_atom())
+            (__walrus_wrapper_target_atom_d6645b510c634f3e8064a2cba3fb292f(self.target_atom()))
             and
-            (target_atoms := self.target_atoms())
+            (__walrus_wrapper_target_atoms_69fa4fc6de7a4a3db57c23b85e7957ad(self.target_atoms()))
         ):
             return target_atom + " " + target_atoms
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (target_atom := self.target_atom())
+            (__walrus_wrapper_target_atom_6ed56c06aa4240caa6eda492ca4bfb54(self.target_atom()))
         ):
             return target_atom
         self.reset(mark)
@@ -613,49 +1411,113 @@ class GeneratedParser(Parser):
         # target_atom: "{" ~ target_atoms "}" | NAME | NUMBER | STRING | "?" | ":" | !"}" OP
         mark = self.mark()
         cut = False
+
+        if False:
+            cut = literal = literal_1 = name = number = op = string = target_atoms = NotImplemented
+
+        def __walrus_wrapper_cut_4e7ea20f85ba4dd695a2641c2a012ffd(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal cut
+            cut = expr
+            return cut
+
+        def __walrus_wrapper_literal_d9ed091647cd4a359b2a353dc21764f4(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_4bc3e77ca0314c4a8a263b23d3ded40e(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_b63fbd9fedb649d0a514a9b11f03ff23(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal
+            literal = expr
+            return literal
+
+        def __walrus_wrapper_literal_1_147b978dd5794556a2ca23c6720789cf(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal literal_1
+            literal_1 = expr
+            return literal_1
+
+        def __walrus_wrapper_name_24fb6190e22f4d9cbb7e67006db95234(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal name
+            name = expr
+            return name
+
+        def __walrus_wrapper_number_cf1f8be08cd14bdb8d44c3ce41dd57c4(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal number
+            number = expr
+            return number
+
+        def __walrus_wrapper_op_1eafb3a8ffee4e73b52ef2e216bb82a6(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal op
+            op = expr
+            return op
+
+        def __walrus_wrapper_string_3b05c2bcf1f7456db12d02eaea6004e3(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal string
+            string = expr
+            return string
+
+        def __walrus_wrapper_target_atoms_aec2f2d6b18f42139035255dbba263b1(expr):
+            """Wrapper function for assignment expression."""
+            nonlocal target_atoms
+            target_atoms = expr
+            return target_atoms
+
         if (
-            (literal := self.expect("{"))
+            (__walrus_wrapper_literal_d9ed091647cd4a359b2a353dc21764f4(self.expect("{")))
             and
-            (cut := True)
+            (__walrus_wrapper_cut_4e7ea20f85ba4dd695a2641c2a012ffd(True))
             and
-            (target_atoms := self.target_atoms())
+            (__walrus_wrapper_target_atoms_aec2f2d6b18f42139035255dbba263b1(self.target_atoms()))
             and
-            (literal_1 := self.expect("}"))
+            (__walrus_wrapper_literal_1_147b978dd5794556a2ca23c6720789cf(self.expect("}")))
         ):
             return "{" + target_atoms + "}"
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (name := self.name())
+            (__walrus_wrapper_name_24fb6190e22f4d9cbb7e67006db95234(self.name()))
         ):
             return name . string
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (number := self.number())
+            (__walrus_wrapper_number_cf1f8be08cd14bdb8d44c3ce41dd57c4(self.number()))
         ):
             return number . string
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (string := self.string())
+            (__walrus_wrapper_string_3b05c2bcf1f7456db12d02eaea6004e3(self.string()))
         ):
             return string . string
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (literal := self.expect("?"))
+            (__walrus_wrapper_literal_4bc3e77ca0314c4a8a263b23d3ded40e(self.expect("?")))
         ):
             return "?"
         self.reset(mark)
         if cut: return None
         cut = False
         if (
-            (literal := self.expect(":"))
+            (__walrus_wrapper_literal_b63fbd9fedb649d0a514a9b11f03ff23(self.expect(":")))
         ):
             return ":"
         self.reset(mark)
@@ -664,12 +1526,16 @@ class GeneratedParser(Parser):
         if (
             self.negative_lookahead(self.expect, "}")
             and
-            (op := self.op())
+            (__walrus_wrapper_op_1eafb3a8ffee4e73b52ef2e216bb82a6(self.op()))
         ):
             return op . string
         self.reset(mark)
         if cut: return None
         return None
+
+
+[setattr(GeneratedParser, k, v) for k, v in _walrus_wrapper_GeneratedParser_dict.items()]
+del _walrus_wrapper_GeneratedParser_dict
 
 
 if __name__ == '__main__':
