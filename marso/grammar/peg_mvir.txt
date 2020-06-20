@@ -1,0 +1,134 @@
+#https://medium.com/@gvanrossum_83706/left-recursive-peg-grammars-65dab3c580e1
+
+# Grammar
+## Identifiers
+
+
+FieldName: NAME
+ProcedureName: NAME
+ModuleName: NAME
+StructName: NAME
+Var: NAME
+
+
+## Types
+
+Kind: ModuleAlias '.' StructName
+# R | V
+# R: Linear resource class value. Must be used, cannot be copied
+# V: Non-resource class value. Can be silently discarded, can be copied
+
+GroundType: 'bool'| 'u8' | 'u64' | 'u128' | 'address'
+
+ModuleAlias: ModuleName | 'Self'
+
+BaseType: GroundType | Kind | 'vector' '<' BaseType '>'
+# k#d.n class 'n' declared in the module referenced by 'd' with kind 'k'
+# the kind 'k' cannot differ from the declared kind
+
+Type: (['&'] | ['&mut'])? BaseType
+
+TypeList: (Type)*
+
+## Values
+Unsigned8 : NUMBER 'u8'
+Unsigned64 : NUMBER 'u64'
+Unsigned128 : NUMBER 'u128'
+
+u: Unsigned8 | Unsigned64 | Unsigned128
+AccountAddress: '0x'NUMBER
+
+Value : 'True' | 'False' | u | AccountAddress
+
+## Expressions
+VarOp : 'copy' '(' Var ')' | 'move' '(' Var ')'
+
+ReferenceOp : '&' Var | '&' Exp '.' FieldName | '*' Exp
+
+Exp : Var
+  | VarOp
+  | ReferenceOp
+  | StructName '{' (FieldName ':' Exp)+ '}'
+  # boolean operators
+  | '!' Exp
+  | Exp '||' Exp
+  | Exp '&&' Exp
+  # u64 operators
+  | Exp '>=' Exp
+  | Exp '<=' Exp
+  | Exp '>' Exp
+  | Exp '<' Exp
+  | Exp '+' Exp
+  | Exp '-' Exp
+  | Exp '*' Exp
+  | Exp '/' Exp
+  | Exp '%' Exp
+  | Exp '^' Exp
+  | Exp '|' Exp
+  | Exp '&' Exp
+  # operators over any ground type
+  | Exp '==' Exp
+  | Exp '!=' Exp
+
+## Commands
+
+# module operators are available only inside the module that declares n.
+ModuleOp : 'move_to_sender' '<' StructName '>' '(' Exp ')'
+  | 'move_from' '<' StructName '>' '(' Exp ')'
+  | 'borrow_global' '<' StructName '>' '(' Exp ')'
+  | 'borrow_global_mut' '<' StructName '>' '(' Exp ')'
+  | 'exists' '<' StructName '>' '(' Exp ')'
+
+
+Builtin : 'create_account' '(' Exp ')'
+  | 'release' '(' Exp ')' 
+  | 'freeze' '(' Var ')'
+
+
+Call : ModuleOp
+  | Builtin
+  | ModuleAlias '.' ProcedureName '(' (Exp)* ')'
+
+Cmd : Var '=' Exp
+  | (Var)+ '=' Call
+  | Call
+  | '*' Var = Exp
+  | 'assert' '(' Exp (',' Exp)* ')'       # type: 'bool * u64 -> unit'
+  | 'break'                               # exit a loop
+  | 'continue'                            # return to the top of a loop
+  | 'return' Exp               # return values from procedure
+  | StructName '{' (FieldName ':' Var)+ '}' '=' Exp
+
+
+## Statements
+
+Stmt : 
+  | 'if' '(' Exp ')' '{' Stmt ['else' ':' Stmt] '}'
+  | 'while' '(' Exp ')' '{' Stmt '}'             # while loop
+  | 'loop' '{' Stmt '}'                 # loops forever
+  | Cmd ';'                          # command
+  | Stmt (Stmt)*                     # sequencing
+
+
+## Imports
+Import : 'import' AccountAddress '.' ModuleName ['as' ModuleName] ';'
+
+## Modules
+StructDecl : 
+  | ('resource' | 'class') StructName '{' (FieldName ':' BaseType)* '}' # declaration of a resource struct
+
+
+ProcedureBody : (Var ';' )* Stmt 
+
+
+ProcedureDecl : 
+  | ('native')? ('public')? ProcedureName '(' ','.(Var ':' Type)+ ')' ':' TypeList '{' ProcedureBody '}'
+
+
+ModuleDecl : 'module' ModuleName '{' (Import)* (StructDecl)* (ProcedureDecl)* '}'
+
+
+TransactionScript :
+  | (Import)* 'public' 'main' '(' ','.(Var ':' Type)+ ')' '{' ProcedureBody '}'
+
+start: (ModuleDecl | TransactionScript) ENDMARKER
