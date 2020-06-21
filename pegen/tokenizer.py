@@ -26,18 +26,32 @@ class Tokenizer:
         self._tokengen = tokengen
         self._tokens = []
         self._index = 0
+        self.in_line_comment = False
         self._verbose = verbose
         if verbose:
             self.report(False, False)
+
+    def ignore_token(self, tok) -> bool:
+        if tok.type == tokenize.OP and tok.string == "//":
+            self.in_line_comment = True
+            return True
+        if self.in_line_comment:
+            if tok.type == tokenize.NL:
+                self.in_line_comment = False
+            return True
+        if tok.type in (tokenize.NL, tokenize.COMMENT):
+            return True
+        if tok.type == token.ERRORTOKEN and tok.string.isspace():
+            return True
+        return False
+
 
     def getnext(self) -> tokenize.TokenInfo:
         """Return the next token and updates the index."""
         cached = True
         while self._index == len(self._tokens):
             tok = next(self._tokengen)
-            if tok.type in (tokenize.NL, tokenize.COMMENT):
-                continue
-            if tok.type == token.ERRORTOKEN and tok.string.isspace():
+            if self.ignore_token(tok):
                 continue
             self._tokens.append(tok)
             cached = False
@@ -51,9 +65,7 @@ class Tokenizer:
         """Return the next token *without* updating the index."""
         while self._index == len(self._tokens):
             tok = next(self._tokengen)
-            if tok.type in (tokenize.NL, tokenize.COMMENT):
-                continue
-            if tok.type == token.ERRORTOKEN and tok.string.isspace():
+            if self.ignore_token(tok):
                 continue
             self._tokens.append(tok)
         return self._tokens[self._index]
