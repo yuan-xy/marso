@@ -26,7 +26,7 @@ BaseType: GroundType | Kind | 'vector' '<' BaseType '>'
 # k#d.n class 'n' declared in the module referenced by 'd' with kind 'k'
 # the kind 'k' cannot differ from the declared kind
 
-Type: (['&'] | ['&mut'])? BaseType
+Type: ('&' ['mut'])? BaseType
 
 TypeList: (Type)*
 
@@ -35,94 +35,124 @@ Unsigned8 : NUMBER 'u8'
 Unsigned64 : NUMBER 'u64'
 Unsigned128 : NUMBER 'u128'
 
-u: Unsigned8 | Unsigned64 | Unsigned128
-AccountAddress: '0x'NUMBER
+u: Unsigned8 | Unsigned64 | Unsigned128 | NUMBER
+AccountAddress: '0x' NUMBER
 
 Value : 'True' | 'False' | u | AccountAddress
 
 ## Expressions
-VarOp : 'copy' '(' Var ')' | 'move' '(' Var ')'
+VarOp :
+  | 'copy' '(' Var ')'
+  | 'move' '(' Var ')'
+  | Var
 
-ReferenceOp : '&' Var | '&' Exp '.' FieldName | '*' Exp
-
-Exp : Var
+ReferenceOp1:
+  | '(' ReferenceOp1 ')'
+  | ModuleOp
+  | Exp '.' FieldName
   | VarOp
-  | ReferenceOp
+
+
+ReferenceOp :
+  | '&' ['mut'] ReferenceOp1
+  | '*' ReferenceOp1
+
+BinOp :
+  | '||'
+  | '&&'
+  | '>='    # u64 operators
+  | '<='
+  | '>'
+  | '<'
+  | '+'
+  | '-'
+  | '*'
+  | '/'
+  | '%'
+  | '^'
+  | '|'
+  | '&'
+  | '=='    # operators over any ground type
+  | '!='
+
+Exp :
+  | Exp BinOp Exp
   | StructName '{' (FieldName ':' Exp)+ '}'
-  # boolean operators
+  | Call
+  | ReferenceOp
+  | VarOp
   | '!' Exp
-  | Exp '||' Exp
-  | Exp '&&' Exp
-  # u64 operators
-  | Exp '>=' Exp
-  | Exp '<=' Exp
-  | Exp '>' Exp
-  | Exp '<' Exp
-  | Exp '+' Exp
-  | Exp '-' Exp
-  | Exp '*' Exp
-  | Exp '/' Exp
-  | Exp '%' Exp
-  | Exp '^' Exp
-  | Exp '|' Exp
-  | Exp '&' Exp
-  # operators over any ground type
-  | Exp '==' Exp
-  | Exp '!=' Exp
+  | Var
+  | Value
+
 
 ## Commands
 
 # module operators are available only inside the module that declares n.
-ModuleOp : 'move_to_sender' '<' StructName '>' '(' Exp ')'
+ModuleOp :
+  |'move_to_sender' '<' StructName '>' '(' Exp ')'
   | 'move_from' '<' StructName '>' '(' Exp ')'
   | 'borrow_global' '<' StructName '>' '(' Exp ')'
-  | 'borrow_global_mut' '<' StructName '>' '(' Exp ')'
+  | '&' 'mut' 'borrow_global_mut' '<' StructName '>' '(' Exp ')'
   | 'exists' '<' StructName '>' '(' Exp ')'
 
 
-Builtin : 'create_account' '(' Exp ')'
-  | 'release' '(' Exp ')' 
+Builtin :
+  | 'create_account' '(' Exp ')'
+  | 'release' '(' Exp ')'
   | 'freeze' '(' Var ')'
+  | 'get_txn_sender' '(' ')'
+  | 'to_u8' '(' Exp ')'
+  | 'to_u64' '(' Exp ')'
+  | 'to_u128' '(' Exp ')'
 
 
-Call : ModuleOp
+Call :
+  | ModuleOp ['.' FieldName]
   | Builtin
-  | ModuleAlias '.' ProcedureName '(' (Exp)* ')'
+  | ModuleAlias '.' ProcedureName '(' [CallInner] ')'
 
-Cmd : Var '=' Exp
+CallInner: Exp (',' Exp)*
+
+Cmd :
+  | 'assert' '(' Exp ',' Exp ')'       # type: 'bool * u64 -> unit'
+  | 'break'
+  | 'continue'
+  | 'return' [Exp]
+  | ReferenceOp '=' Exp
   | (Var)+ '=' Call
   | Call
-  | '*' Var = Exp
-  | 'assert' '(' Exp (',' Exp)* ')'       # type: 'bool * u64 -> unit'
-  | 'break'                               # exit a loop
-  | 'continue'                            # return to the top of a loop
-  | 'return' Exp               # return values from procedure
   | StructName '{' (FieldName ':' Var)+ '}' '=' Exp
 
 
 ## Statements
+StmtList: (Stmt)*
 
-Stmt : 
+Stmt :
   | 'if' '(' Exp ')' '{' Stmt ['else' ':' Stmt] '}'
-  | 'while' '(' Exp ')' '{' Stmt '}'             # while loop
-  | 'loop' '{' Stmt '}'                 # loops forever
-  | Cmd ';'                          # command
-  | Stmt (Stmt)*                     # sequencing
+  | 'while' '(' Exp ')' '{' Stmt '}'
+  | 'loop' '{' Stmt '}'
+  | Cmd ';'
 
 
 ## Imports
 Import : 'import' AccountAddress '.' ModuleName ['as' ModuleName] ';'
 
 ## Modules
-StructDecl : 
-  | ('resource' | 'class') StructName '{' (FieldName ':' BaseType)* '}' # declaration of a resource struct
+StructDecl :
+  | ('resource' | 'class') StructName '{' StructFieldDecl (',' StructFieldDecl)* [','] '}'
+
+StructFieldDecl: FieldName ':' BaseType
+
+ProcedureBody : ('let' Var ':' Type ';' )* StmtList
 
 
-ProcedureBody : (Var ';' )* Stmt 
+ProcedureDecl :
+  | ('native')? ('public')? ProcedureName '(' [(Var ':' Type) (',' Var ':' Type)* ] ')' [':' TypeList] [AcquireList] '{' ProcedureBody '}'
 
+AcquireList : 'acquires' NAME (',' NAME)*
 
-ProcedureDecl : 
-  | ('native')? ('public')? ProcedureName '(' ','.(Var ':' Type)+ ')' ':' TypeList '{' ProcedureBody '}'
+# ','.(Var ':' Type)+ ')' ':' TypeList '{' ProcedureBody '}'
 
 
 ModuleDecl : 'module' ModuleName '{' (Import)* (StructDecl)* (ProcedureDecl)* '}'
@@ -131,4 +161,4 @@ ModuleDecl : 'module' ModuleName '{' (Import)* (StructDecl)* (ProcedureDecl)* '}
 TransactionScript :
   | (Import)* 'public' 'main' '(' ','.(Var ':' Type)+ ')' '{' ProcedureBody '}'
 
-start: (ModuleDecl | TransactionScript) ENDMARKER
+start: (ModuleDecl | TransactionScript) NEWLINE* ENDMARKER
