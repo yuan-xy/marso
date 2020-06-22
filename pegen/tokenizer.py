@@ -36,7 +36,7 @@ class Tokenizer:
             self.in_line_comment = True
             return True
         if self.in_line_comment:
-            if tok.type == tokenize.NL:
+            if tok.type == tokenize.NL or tok.type == tokenize.NEWLINE:
                 self.in_line_comment = False
             return True
         if tok.type in (tokenize.NL, tokenize.COMMENT):
