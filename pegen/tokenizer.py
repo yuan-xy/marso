@@ -27,6 +27,7 @@ class Tokenizer:
         self._tokens = []
         self._index = 0
         self.in_line_comment = False
+        self.in_block_comment = False
         self._verbose = verbose
         if verbose:
             self.report(False, False)
@@ -35,10 +36,29 @@ class Tokenizer:
         if tok.type == tokenize.OP and tok.string == "//":
             self.in_line_comment = True
             return True
+
+        if tok.type == tokenize.OP and tok.string == "/":
+            pos = self.mark()
+            next_tok = next(self._tokengen)
+            if next_tok.string[0] == "*":
+                self.in_block_comment = True
+                return True
+            else:
+                self.reset(pos)
+
         if self.in_line_comment:
             if tok.type == tokenize.NL or tok.type == tokenize.NEWLINE:
                 self.in_line_comment = False
             return True
+
+        if self.in_block_comment:
+            if tok.type == tokenize.OP and tok.string[-1] == "*":
+                pos = self.mark()
+                next_tok = next(self._tokengen)
+                if next_tok.string == "/":
+                    self.in_block_comment = False
+            return True
+
         if tok.type in (tokenize.NL, tokenize.COMMENT):
             return True
         if tok.type == token.ERRORTOKEN and tok.string.isspace():

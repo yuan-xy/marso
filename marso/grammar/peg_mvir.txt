@@ -5,9 +5,10 @@
 
 
 FieldName: NAME
-ProcedureName: NAME
+TypeName: NAME
+ProcedureName: NAME ['<' TypeName '>']
 ModuleName: NAME
-StructName: NAME
+StructName: NAME ['<' TypeName '>']
 Var: NAME
 
 
@@ -22,13 +23,15 @@ GroundType: 'bool'| 'u8' | 'u64' | 'u128' | 'address'
 
 ModuleAlias: ModuleName | 'Self'
 
-BaseType: GroundType | Kind | 'vector' '<' BaseType '>'
+BaseType: GroundType | Kind | 'vector' '<' BaseType '>' | TypeName
+
+
 # k#d.n class 'n' declared in the module referenced by 'd' with kind 'k'
 # the kind 'k' cannot differ from the declared kind
 
 Type: ('&' ['mut'])? BaseType
 
-TypeList: (Type)*
+TypeList: Type ('*' Type)*
 
 ## Values
 Unsigned8 : NUMBER 'u8'
@@ -47,15 +50,15 @@ VarOp :
   | Var
 
 ReferenceOp1:
-  | '(' ReferenceOp1 ')'
   | ModuleOp
-  | Exp '.' FieldName
+  | Exp ['.' FieldName]
   | VarOp
 
 
 ReferenceOp :
-  | '&' ['mut'] ReferenceOp1
-  | '*' ReferenceOp1
+  | '&' ['mut'] ReferenceOp
+  | '*' ReferenceOp
+  | ReferenceOp1
 
 BinOp :
   | '||'
@@ -77,6 +80,7 @@ BinOp :
 
 Exp :
   | Exp BinOp Exp
+  | '(' Exp ')'
   | StructName '{' (FieldName ':' Exp)+ '}'
   | Call
   | ReferenceOp
@@ -90,11 +94,11 @@ Exp :
 
 # module operators are available only inside the module that declares n.
 ModuleOp :
-  |'move_to_sender' '<' StructName '>' '(' Exp ')'
-  | 'move_from' '<' StructName '>' '(' Exp ')'
-  | 'borrow_global' '<' StructName '>' '(' Exp ')'
-  | '&' 'mut' 'borrow_global_mut' '<' StructName '>' '(' Exp ')'
-  | 'exists' '<' StructName '>' '(' Exp ')'
+  |'move_to_sender' '<' ~ StructName '>' '(' Exp ')'
+  | 'move_from' '<' ~ StructName '>' '(' Exp ')'
+  | 'borrow_global' '<' ~ StructName '>' '(' Exp ')'
+  | '&' 'mut' 'borrow_global_mut' '<' ~ StructName '>' '(' Exp ')'
+  | 'exists' '<' ~ StructName '>' '(' Exp ')'
 
 
 Builtin :
@@ -118,11 +122,11 @@ Cmd :
   | 'assert' '(' Exp ',' Exp ')'       # type: 'bool * u64 -> unit'
   | 'break'
   | 'continue'
-  | 'return' [Exp]
+  | 'return' [CallInner]
   | ReferenceOp '=' Exp
   | (Var)+ '=' Call
   | Call
-  | StructName '{' (FieldName ':' Var)+ '}' '=' Exp
+  | StructName '{' FieldName '}' '=' Exp
 
 
 ## Statements
@@ -148,8 +152,10 @@ ProcedureBody : ('let' Var ':' Type ';' )* StmtList
 
 
 ProcedureDecl :
-  | ('native')? ('public')? ProcedureName '(' [(Var ':' Type) (',' Var ':' Type)* ] ')' [':' TypeList] [AcquireList] '{' ProcedureBody '}'
+  | 'native' ('public')? ProcedureName ProcedureParams [':' TypeList] ';'
+  | ('public')? ProcedureName ProcedureParams [':' TypeList] [AcquireList] '{' ProcedureBody '}'
 
+ProcedureParams: '(' [(Var ':' Type) (',' Var ':' Type)* ] ')'
 AcquireList : 'acquires' NAME (',' NAME)*
 
 # ','.(Var ':' Type)+ ')' ':' TypeList '{' ProcedureBody '}'
