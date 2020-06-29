@@ -39,7 +39,7 @@ Unsigned64 : NUMBER 'u64'
 Unsigned128 : NUMBER 'u128'
 
 u: Unsigned8 | Unsigned64 | Unsigned128 | NUMBER
-AccountAddress: '0x' NUMBER
+AccountAddress: NUMBER
 
 Value : 'True' | 'False' | u | AccountAddress
 
@@ -144,7 +144,7 @@ Import : 'import' AccountAddress '.' ModuleName ['as' ModuleName] ';'
 
 ## Modules
 StructDecl :
-  | ('resource' | 'class') StructName '{' StructFieldDecl (',' StructFieldDecl)* [','] '}'
+  | ('resource' | 'struct') StructName '{' StructFieldDecl (',' StructFieldDecl)* [','] '}'
 
 StructFieldDecl: FieldName ':' BaseType
 
