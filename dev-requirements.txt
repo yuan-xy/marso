@@ -10,7 +10,7 @@ bleach==3.3.0
     # via readme-renderer
 bpc-utils==0.9.1
     # via python-walrus
-certifi==2020.4.5.1
+certifi==2022.12.7
     # via requests
 cffi==1.14.0
     # via cryptography
@@ -66,12 +66,12 @@ python-walrus==0.1.4
     # via -r dev-requirements.in
 readme-renderer==25.0
     # via twine
-requests-toolbelt==0.9.1
-    # via twine
 requests==2.23.0
     # via
     #   requests-toolbelt
     #   twine
+requests-toolbelt==0.9.1
+    # via twine
 secretstorage==3.1.2
     # via keyring
 six==1.14.0
